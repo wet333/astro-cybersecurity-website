@@ -1,0 +1,33 @@
+---
+interface Props {
+    label: string;
+    isFullWidth?: boolean;
+    type?: string;
+}
+
+const { label, isFullWidth = false, type = 'button' }: Props = Astro.props;
+
+const width = isFullWidth ? 'width: 100%;' : 'width: fit-content;';
+---
+
+<button style={ width } type={ type }>{ label }</button>
+
+<style>
+    button {
+        display: inline-block;
+        padding: 0.7rem 1.4rem;
+        width: 100%;
+        border-radius: 6px;
+        background: #13151a;
+        color: #78bbed;
+        border: #78bbed solid 1px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background 0.3s ease, color 0.3s ease;
+    }
+    button:hover {
+        background: #78bbed;
+        color: #13151a;
+    }
+</style>

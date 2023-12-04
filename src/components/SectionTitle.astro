@@ -1,0 +1,34 @@
+---
+interface Props {
+    title: string;
+    subtitle: string;
+    sectionId: string;
+}
+
+const { title, subtitle = "Cybershield", sectionId} = Astro.props;
+---
+
+<div id={sectionId}>
+    <p>{subtitle}</p>
+    <h2>{title}</h2>
+</div>
+
+<style>
+    * {
+        color: #78bbed;
+        margin: 0;
+        padding: 0;
+    }
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 10px;
+    }
+    h2 {
+        font-size: 3rem;
+    }
+    p {
+        font-size: 1.5rem;
+    }
+</style>

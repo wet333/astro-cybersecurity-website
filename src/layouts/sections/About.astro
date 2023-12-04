@@ -1,0 +1,46 @@
+---
+import Section from "../../layouts/Section.astro"
+import SectionTitle from "../../components/SectionTitle.astro"
+import aboutPageInfo from "../../data/aboutUsData.json"
+---
+
+<Section hasSeparator={true} >
+    <SectionTitle title="About Us" sectionId="about-section" />
+    <p>{aboutPageInfo.description}</p>
+    <div class="about-container">
+        <img src="/images/company-team.jpg" alt="Cybershield dev team picture" />
+        <div class="about-text">
+            <p>{aboutPageInfo.quote}</p>
+            <p>{aboutPageInfo.author}</p>
+        </div>
+    </div>
+</Section>
+
+<style>
+    .about-container {
+        display: grid;
+        grid-auto-columns: 1fr 1fr;
+        grid-gap: 2rem;
+        margin: 3rem;
+    }
+
+    p {
+        margin-top: 2rem;
+    }
+
+    img {
+        grid-column: 1/ 2;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .about-text {
+        grid-column: 2/ 3;
+        font-size: 1.5rem;
+        line-height: 2.5rem;
+        align-self: center;
+        filter: opacity(0.8);
+        font-style: italic;
+    }
+</style>

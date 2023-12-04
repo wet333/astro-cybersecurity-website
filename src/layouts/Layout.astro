@@ -1,0 +1,62 @@
+---
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon/icons8-cyber-security-color-96.png" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+
+		<!-- Google Fonts -->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+
+		<!-- Add Fontawesome -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+<style is:global>
+	:root {
+		/* Fonts */
+		--font-color: white;
+		--font-size: 18px;
+
+		/* Colors */
+		--primary-color: #007bff;
+		--light-bg-color: #20242f;
+		--bg-color: #13151a;
+	}
+
+	html {
+		font-family: 'Roboto', sans-serif;
+		color: var(--font-color);
+		background: var(--bg-color);
+		font-size: var(--font-size);
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		font-family: 'Montserrat', sans-serif;
+	}
+
+	body {
+		box-sizing: border-box;
+		padding: 0;
+		margin: 0;
+	}
+
+	p {
+		line-height: 1.8rem;
+	}
+</style>

@@ -1,0 +1,50 @@
+[
+  {
+    "title": "Web Development",
+    "description": "We build websites and web applications using modern technologies and best practices.",
+    "image": "/images/serviceIcons/web-dev.png",
+    "alt": "dev-code_icon.png"
+  },
+  {
+    "title": "Simple Setup",
+    "description": "The Shield platform allows users to easily setup and configure their website security.",
+    "image": "/images/serviceIcons/config.png",
+    "alt": "cog_icon.png"
+  },
+  {
+    "title": "Automatic Integration",
+    "description": "The Shield platform automatically integrates with your website and web applications.",
+    "image": "/images/serviceIcons/web-integration.png",
+    "alt": "integration_icon.png"
+  },
+  {
+    "title": "Secured Database",
+    "description": "The Shield platform includes a secured database for storing your website and web application data.",
+    "image": "/images/serviceIcons/database.png",
+    "alt": "database_icon.png"
+  },
+  {
+    "title": "Documentation",
+    "description": "The Shield platform includes documentation for all of its features and functionality.",
+    "image": "/images/serviceIcons/documentation.png",
+    "alt": "documentation_icon.png"
+  },
+  {
+    "title": "Cloud Compatibility",
+    "description": "The Shield platform is compatible with cloud services such as AWS, Azure, and Google Cloud.",
+    "image": "/images/serviceIcons/cloud.png",
+    "alt": "cloud_icon.png"
+  },
+  {
+    "title": "Threat Protection Team",
+    "description": "The Shield platform includes a team of security experts to protect your website and web applications.",
+    "image": "/images/serviceIcons/web-targeting.png",
+    "alt": "threat_icon.png"
+  },
+  {
+    "title": "Component Based Admin Panel",
+    "description": "The Shield platform includes an customizable component based admin panel, you only pay for the components you need.",
+    "image": "/images/serviceIcons/web-layout.png",
+    "alt": "admin_panel_icon.png"
+  }
+]

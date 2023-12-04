@@ -1,0 +1,71 @@
+[
+  {
+    "description": "Basic Plan",
+    "price": 5.99,
+    "buttonLabel": "Get Started",
+    "perkList": [
+      {
+        "name": "Access to basic features",
+        "isActive": true
+      },
+      {
+        "name": "24/7 Support line",
+        "isActive": false
+      },
+      {
+        "name": "Ad-free experience",
+        "isActive": false
+      },
+      {
+          "name": "Cloud Hosting included",
+          "isActive": false
+      }
+    ]
+  },
+  {
+    "description": "Pro Plan",
+    "price": 19.99,
+    "buttonLabel": "Upgrade Now",
+    "perkList": [
+      {
+        "name": "Access to all features",
+        "isActive": true
+      },
+      {
+        "name": "24/7 Support line",
+        "isActive": true
+      },
+      {
+        "name": "Ad-free experience",
+        "isActive": true
+      },
+      {
+        "name": "Cloud Hosting included",
+        "isActive": false
+      }
+    ]
+  },
+  {
+    "description": "Enterprise Plan",
+    "price": 49.99,
+    "buttonLabel": "Contact Sales",
+    "perkList": [
+      {
+        "name": "Access to all features",
+        "isActive": true
+      },
+      {
+        "name": "24/7 Support line",
+        "isActive": true
+      },
+      {
+        "name": "Ad-free experience",
+        "isActive": true
+      },
+      {
+        "name": "Cloud Hosting included",
+        "isActive": true
+      }
+    ]
+  }
+]

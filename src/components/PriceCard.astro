@@ -1,0 +1,123 @@
+---
+interface Props {
+    description: string;
+    price: number;
+    buttonLabel: string;
+    perkList: {
+        name: string;
+        isActive: boolean;
+    }[];
+}
+
+const { description, price, perkList, buttonLabel } = Astro.props;
+---
+
+<li class="card-grid">
+    <div class="card-grid__price">
+        <span class="card-plan">{description}</span>
+        <span class="card-price">{price}</span>
+        <span class="card-monthly">/month</span>
+    </div>
+    <div class="card-grid__perks">
+        {perkList.map((perk) => (
+            <div>{perk.isActive ? <i class="icon icon--active fa-solid fa-check"></i> : <i class="icon icon--inactive fa-solid fa-xmark"></i>}{perk.name}</div>
+        ))}
+    </div>
+    <div class="card-grid__btn-wrapper">
+        <button>{buttonLabel}</button>
+    </div>
+</li>
+
+<style>
+    .card-grid {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        background: #20242f;
+        padding: 1.2rem;
+        border-radius: 6px;
+        margin-top: 2rem;
+        grid-column: auto;
+        min-width: 275px;
+        width: 275px;
+        max-width: 275px;
+        transition: transform 0.3s ease;
+    }
+    .card-grid:hover {
+        transform: scale(1.05);
+    }
+    .card-plan {
+        color: #78bbed;
+    }
+    .card-price {
+        font-size: 3.6rem;
+        font-weight: 700;
+        color: #fff;
+    }
+    .card-price::before {
+        content: "$";
+        width: 100%;
+        margin-bottom: 1.2rem;
+    }
+    .card-monthly {
+        color: #fff;
+        filter: brightness(0.75);
+    }
+    .card-grid__price {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+    .card-grid__perks {
+        display: flex;
+        flex-direction: column;
+        margin-top: 1rem;
+        margin-left: 5px;
+    }
+    .card-grid__perks div {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.75rem;
+    }
+    .icon {
+        display: inline-block;
+        width: 1.6rem;
+        height: 1.6rem;
+        border-radius: 50%;
+        font-size: 1.2rem;
+        font-weight: 700;
+        text-align: center;
+        line-height: 1.6rem;
+        margin-right: 1rem;
+    }
+    .icon--active {
+        color: #9acd54;
+        background: #20242f;
+    }
+    .icon--inactive {
+        color: #c94646;
+        background: #20242f;
+    }
+    .card-grid__btn-wrapper {
+        display: flex;
+        justify-content: center;
+        margin-top: 1.3rem;
+    }
+    .card-grid__btn-wrapper button {
+        display: inline-block;
+        padding: 1.2rem 2.4rem;
+        width: 100%;
+        border-radius: 6px;
+        background: #13151a;
+        color: #78bbed;
+        border: #78bbed solid 1px;
+        font-size: 1.4rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background 0.3s ease, color 0.3s ease;
+    }
+    .card-grid__btn-wrapper button:hover {
+        background: #78bbed;
+        color: #13151a;
+    }
+</style>

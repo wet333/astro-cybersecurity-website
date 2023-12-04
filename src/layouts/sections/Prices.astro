@@ -1,0 +1,45 @@
+---
+import Section from "../../layouts/Section.astro";
+import SectionTitle from "../../components/SectionTitle.astro";
+import PriceCard from "../../components/PriceCard.astro";
+import priceOptions from "../../data/pricingPlans.json";
+---
+
+<Section hasSeparator={true} >
+    <SectionTitle title="Plans and Pricing" sectionId="plans-section" />
+    <p>
+        We offer a variety of plans to suit your needs. All plans come with a <strong>30 day money back</strong> guarantee.
+    </p>
+    <ul class="prices-container">
+        {priceOptions.map(item => {
+            return (
+                <PriceCard
+                        description={item.description}
+                        price={item.price}
+                        buttonLabel={item.buttonLabel}
+                        image={item.image}
+                        perkList={item.perkList}
+                />
+            )
+        })}
+    </ul>
+</Section>
+
+<style>
+    .prices-container {
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        gap: 0 5rem;
+        flex-wrap: wrap;
+    }
+    p {
+        color: #a8abb3;
+        margin-bottom: 2rem;
+    }
+    strong {
+        color: #fff;
+    }
+</style>

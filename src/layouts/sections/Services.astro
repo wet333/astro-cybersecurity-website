@@ -1,0 +1,31 @@
+---
+import Section from "../../layouts/Section.astro"
+import SectionTitle from "../../components/SectionTitle.astro"
+import ServiceCard from "../../components/ServiceCard.astro"
+import services from "../../data/serviceList.json";
+---
+
+<Section hasSeparator={true} >
+    <SectionTitle title="Our Services" sectionId="services-section"/>
+    <ul>
+        {services.map((service, index) => (
+                <ServiceCard
+                        title={service.title}
+                        description={service.description}
+                        image={service?.image}
+                        alt={service?.alt}
+                />
+        ))}
+    </ul>
+</Section>
+
+<style>
+    ul {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-gap: 2rem;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+</style>

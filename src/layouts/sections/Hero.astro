@@ -1,0 +1,68 @@
+---
+import Section from "../../layouts/Section.astro"
+import { Image } from "astro:assets"
+import HeroImage from "../../nonPublic/hero-image.png"
+import NavBar from "../../components/NavBar.astro"
+import Button from "../../components/Button.astro"
+
+const imageStyles = "width: 100%; height: 75vh; filter: hue-rotate(15deg) saturate(0.65) opacity(0.5);";
+const blendStyle = "mix-blend-mode: lighten;";
+const maskStyle = "-webkit-mask-image: radial-gradient(black 30%, transparent 70%);";
+---
+
+<Section hasSeparator={false} isFullWidth={true}>
+    <Image src={HeroImage} alt="Cybershield hero image" style={imageStyles + blendStyle + maskStyle}/>
+    <div class="front-face">
+        <div class="hero-wrapper">
+            <NavBar />
+            <div class="hero-contents">
+                <h1>Welcome to Cybershield</h1>
+                <p>We provide top-notch cybersecurity services to protect your business from cyber threats.</p>
+                <Button label="Click here!" />
+            </div>
+        </div>
+    </div>
+</Section>
+
+<style>
+    Section {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .front-face {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+    }
+    .hero-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding: 2rem;
+        height: 100%;
+        align-items: center;
+    }
+    .hero-contents {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        padding: 2rem;
+    }
+    .hero-contents > h1 {
+        font-size: 350%;
+        color: #78bbed;
+        text-shadow: 0 0 20px #13151a, 0 0 20px #13151a;
+        margin-bottom: 0;
+    }
+    .hero-contents > p {
+        font-size: 150%;
+        width: 70%;
+        line-height: 3rem;
+        text-shadow: 0 0 20px #13151a, 0 0 20px #13151a;
+    }
+</style>

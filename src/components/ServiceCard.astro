@@ -1,0 +1,48 @@
+---
+interface Props {
+    title: string;
+    description: string;
+    image?: string;
+    alt: string;
+}
+
+const { title, description, image, alt = "service_icon" } = Astro.props;
+---
+
+<li class="card-grid">
+    <div class="card-grid__image">
+        {image && <img src={image} alt={alt}>}
+    </div>
+    <h3 class="card-grid__title">{ title }</h3>
+    <p class="card-grid__description">{ description }</p>
+</li>
+
+<style>
+    .card-grid {
+        display: flex;
+        background: #181b23;
+        color: #e9e9e9;
+        padding: 1rem 2rem 2rem;
+        margin: 12px 0;
+        border-radius: 6px;
+        flex-direction: column;
+        transition: 0.3s ease-in-out;
+    }
+    .card-grid:hover {
+        background: #131b31;
+        color: #e9e9e9;
+    }
+    .card-grid__image {
+        margin-bottom: 0.2rem;
+    }
+    .card-grid__title {
+        font-size: 150%;
+        margin: 0;
+        padding: 0;
+        color: #78bbed;
+    }
+    .card-grid__description {
+        padding: 0;
+        margin: 1rem 0 0;
+    }
+</style>

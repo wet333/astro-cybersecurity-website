@@ -1,0 +1,23 @@
+---
+import Separator from "../components/Separator.astro"
+interface Props {
+    hasSeparator: boolean;
+    isFullWidth: boolean;
+}
+
+const { hasSeparator = false, isFullWidth = false } = Astro.props;
+
+const marginStyle = isFullWidth ? "margin: 0 auto; max-width: 100%; position: relative;" : "margin: 4rem auto; padding: 0 2rem;";
+---
+
+<section class="responsive-section" style={marginStyle}>
+    <slot />
+</section>
+{hasSeparator && <Separator />}
+
+<style>
+    .responsive-section {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+</style>
