@@ -1,0 +1,12 @@
+{
+  "address": {
+    "physical": {
+      "street": "123 Main St",
+      "city": "Anytown",
+      "state": "CA",
+      "zip": "12345"
+    }
+  },
+  "phone": "555-456-7890",
+  "email": "contact@cybershield.com"
+}

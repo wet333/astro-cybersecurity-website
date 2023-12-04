@@ -9,7 +9,7 @@ import aboutPageInfo from "../../data/aboutUsData.json"
     <p>{aboutPageInfo.description}</p>
     <div class="about-container">
         <img src="/images/company-team.jpg" alt="Cybershield dev team picture" />
-        <div class="about-text">
+        <div class="quote-text">
             <p>{aboutPageInfo.quote}</p>
             <p>{aboutPageInfo.author}</p>
         </div>
@@ -18,10 +18,19 @@ import aboutPageInfo from "../../data/aboutUsData.json"
 
 <style>
     .about-container {
-        display: grid;
-        grid-auto-columns: 1fr 1fr;
-        grid-gap: 2rem;
-        margin: 3rem;
+        display: flex;
+        margin: 2rem 1rem;
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+
+    @media (min-width: 768px) {
+        .about-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-gap: 2rem;
+            margin: 3rem;
+        }
     }
 
     p {
@@ -35,9 +44,9 @@ import aboutPageInfo from "../../data/aboutUsData.json"
         object-fit: cover;
     }
 
-    .about-text {
+    .quote-text {
         grid-column: 2/ 3;
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         line-height: 2.5rem;
         align-self: center;
         filter: opacity(0.8);

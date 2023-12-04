@@ -20,8 +20,8 @@ const { title, description, image, alt = "service_icon" } = Astro.props;
 <style>
     .card-grid {
         display: flex;
-        background: #181b23;
-        color: #e9e9e9;
+        background: var(--mid-bg-color);
+        color: var(--font-color);
         padding: 1rem 2rem 2rem;
         margin: 12px 0;
         border-radius: 6px;
@@ -29,8 +29,8 @@ const { title, description, image, alt = "service_icon" } = Astro.props;
         transition: 0.3s ease-in-out;
     }
     .card-grid:hover {
-        background: #131b31;
-        color: #e9e9e9;
+        background: var(--mid-hover-color);
+        color: var(--font-color);
     }
     .card-grid__image {
         margin-bottom: 0.2rem;
@@ -39,7 +39,7 @@ const { title, description, image, alt = "service_icon" } = Astro.props;
         font-size: 150%;
         margin: 0;
         padding: 0;
-        color: #78bbed;
+        color: var(--primary-color);
     }
     .card-grid__description {
         padding: 0;

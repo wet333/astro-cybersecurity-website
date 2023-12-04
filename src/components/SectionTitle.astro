@@ -15,7 +15,7 @@ const { title, subtitle = "Cybershield", sectionId} = Astro.props;
 
 <style>
     * {
-        color: #78bbed;
+        color: var(--primary-color);
         margin: 0;
         padding: 0;
     }
@@ -26,9 +26,10 @@ const { title, subtitle = "Cybershield", sectionId} = Astro.props;
         margin-bottom: 10px;
     }
     h2 {
-        font-size: 3rem;
+        font-size: 2.8rem;
     }
     p {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
+        filter: opacity(0.75);
     }
 </style>

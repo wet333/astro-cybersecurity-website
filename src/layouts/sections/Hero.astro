@@ -5,7 +5,7 @@ import HeroImage from "../../nonPublic/hero-image.png"
 import NavBar from "../../components/NavBar.astro"
 import Button from "../../components/Button.astro"
 
-const imageStyles = "width: 100%; height: 75vh; filter: hue-rotate(15deg) saturate(0.65) opacity(0.5);";
+const imageStyles = "width: 100%; max-width: 1200px; height: 75vh; filter: hue-rotate(15deg) saturate(0.65) opacity(0.5); object-fit: cover;";
 const blendStyle = "mix-blend-mode: lighten;";
 const maskStyle = "-webkit-mask-image: radial-gradient(black 30%, transparent 70%);";
 ---
@@ -51,18 +51,29 @@ const maskStyle = "-webkit-mask-image: radial-gradient(black 30%, transparent 70
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap;
-        padding: 2rem;
+        padding: 2rem 0;
     }
     .hero-contents > h1 {
-        font-size: 350%;
-        color: #78bbed;
-        text-shadow: 0 0 20px #13151a, 0 0 20px #13151a;
-        margin-bottom: 0;
+        font-size: calc(1.5rem + 3vh + 2vw);
+        color: var(--primary-color);
+        text-shadow: 0 0 20px var(--bg-color), 0 0 20px var(--bg-color);
+        margin-bottom: 2rem;
     }
     .hero-contents > p {
-        font-size: 150%;
-        width: 70%;
-        line-height: 3rem;
-        text-shadow: 0 0 20px #13151a, 0 0 20px #13151a;
+        display: none;
     }
+
+    @media screen and (min-width: 768px) {
+        .hero-contents > h1 {
+            margin-bottom: 0;
+        }
+        .hero-contents > p {
+            display: block;
+            font-size: 1.2rem;
+            width: 70%;
+            line-height: 2.4rem;
+            text-shadow: 0 0 20px var(--bg-color), 0 0 20px var(--bg-color);
+        }
+    }
+
 </style>

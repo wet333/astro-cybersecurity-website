@@ -1,0 +1,118 @@
+---
+import Section from "../../layouts/Section.astro"
+import SectionTitle from "../../components/SectionTitle.astro"
+
+import Button from "../../components/Button.astro"
+
+import contactData from "../../data/contacts.json"
+---
+
+<Section>
+    <SectionTitle title="Talk to us" />
+    <div class="wrapper">
+        <div class="col contact-col">
+            <p>Have a question? Want to know more about our services? Get in touch with us and we'll get back to you as soon as possible.</p>
+            <form name="contact" method="POST" data-netlify="true">
+                <input type="hidden" name="form-name" value="contact" />
+                <div class="name_email--wrapper">
+                    <div class="form--group">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" id="name" />
+                    </div>
+                    <div class="form--group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" />
+                    </div>
+                </div>
+                <div class="form--group">
+                    <label for="message">Message</label>
+                    <textarea name="message" id="message" rows="6"></textarea>
+                </div>
+                <div>
+                    <Button type="submit" label="Send" />
+                </div>
+            </form>
+        </div>
+        <div class="col addresses-col">
+            <div>
+                <h3>Address</h3>
+                <p>{contactData.address.physical.street}</p>
+                <p>{contactData.address.physical.city + " " + contactData.address.physical.state + " " + contactData.address.physical.zip}</p>
+            </div>
+            <div>
+                <h3>Phone</h3>
+                <p>{contactData.phone}</p>
+            </div>
+            <div>
+                <h3>Email</h3>
+                <p>{contactData.email}</p>
+            </div>
+        </div>
+    </div>
+</Section>
+
+<style>
+    .wrapper {
+        display: grid;
+        grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+        gap: 2rem 10rem;
+        max-width: 100%;
+    }
+    .col {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+    }
+    .contact-col {
+
+    }
+    form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        gap: 1rem;
+    }
+    .form--group {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        gap: 0.6rem;
+    }
+    .name_email--wrapper {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+        gap: 1rem 2rem;
+    }
+    .text-area_submit--wrapper {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+        width: unset;
+        gap: 0.4rem;
+    }
+    form input, textarea {
+        color: var(--font-color);
+        background: var(--mid-bg-color);
+        border: var(--border-color) 1px solid;
+        padding: 0.3rem;
+        border-radius: 2px;
+        font-size: 16px;
+    }
+    .addresses-col {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        gap: 1.5rem;
+    }
+    .addresses-col div > h3 {
+        margin-top: 0;
+        margin-bottom: 0.4rem;
+    }
+    .addresses-col div > p {
+        margin: 0;
+    }
+</style>

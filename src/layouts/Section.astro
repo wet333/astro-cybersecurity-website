@@ -7,17 +7,29 @@ interface Props {
 
 const { hasSeparator = false, isFullWidth = false } = Astro.props;
 
-const marginStyle = isFullWidth ? "margin: 0 auto; max-width: 100%; position: relative;" : "margin: 4rem auto; padding: 0 2rem;";
+const sectionClass = isFullWidth ? "full-width--section" : "locked-width--section";
 ---
 
-<section class="responsive-section" style={marginStyle}>
+<section class:list={ sectionClass } >
     <slot />
 </section>
 {hasSeparator && <Separator />}
 
 <style>
-    .responsive-section {
-        max-width: 1200px;
+    .full-width--section {
+        display: flex;
+        flex-direction: column;
         margin: 0 auto;
+        max-width: 100%;
+        position: relative;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .locked-width--section {
+        max-width: 1200px;
+        margin: 4rem auto;
+        padding: 0 2rem;
     }
 </style>

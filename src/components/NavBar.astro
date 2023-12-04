@@ -1,4 +1,5 @@
 ---
+import contacts from '../data/contacts.json'
 ---
 
 <nav>
@@ -14,8 +15,8 @@
         </div>
     </div>
     <div class="right-col">
-        <a class="contact-element"><i class="fa-regular fa-envelope"></i>contact@cybershield.com</a>
-        <a class="contact-element"><i class="fa-solid fa-phone"></i>555-234-2341</a>
+        <a class="contact-element"><i class="fa-regular fa-envelope"></i>{contacts.email}</a>
+        <a class="contact-element"><i class="fa-solid fa-phone"></i>{contacts.phone}</a>
     </div>
 </nav>
 
@@ -39,7 +40,7 @@
     }
     .right-col {
         flex: 2;
-        display: flex;
+        display: none;
         flex-direction: row;
         flex-wrap: nowrap;
         justify-content: flex-end;
@@ -50,7 +51,7 @@
         align-items: center;
         align-content: center;
         flex-wrap: nowrap;
-        gap: 0.2rem;
+        gap: 0.5rem;
     }
     .logotype img {
         filter: saturate(0.5) brightness(1.3);
@@ -58,40 +59,40 @@
     .logotype span {
         font-family: 'Source Sans 3', sans-serif;
         font-weight: 700;
-        color: #78bbed;
+        color: var(--primary-color);
         font-size: 175%;
         margin-right: 2rem;
     }
     .links {
-
+        display: none;
     }
     .links a {
-        color: #fff;
+        color: var(--font-color);
         text-decoration: none;
         padding: 4px;
         margin: 0 6px;
         cursor: pointer;
     }
     .links a:hover {
-        color: #78bbed;
+        color: var(--primary-color);
     }
     i {
         margin-right: 0.5rem;
         font-size: 115%;
     }
     .right-col a {
-        color: #fff;
+        color: var(--font-color);
         text-decoration: none;
         padding: 2px;
         cursor: pointer;
     }
     .right-col a:nth-child(n+2) {
-        border-left: #ffffff3d solid 1px;
+        border-left: var(--border-color) solid 1px;
         padding-left: 0.5rem;
         margin-left: 0.5rem;
     }
     .right-col a:hover {
-        color: #78bbed;
+        color: var(--primary-color);
     }
     .contact-element {
         display: flex;
@@ -99,5 +100,19 @@
         flex-direction: row;
         flex-wrap: nowrap;
         justify-content: flex-start;
+        text-wrap: nowrap;
     }
+
+    @media screen and (min-width: 1024px) {
+        .links {
+            display: flex;
+        }
+    }
+
+    @media screen and (min-width: 768px) {
+        .right-col {
+            display: flex;
+        }
+    }
+
 </style>
