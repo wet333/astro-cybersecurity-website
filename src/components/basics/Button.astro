@@ -17,14 +17,14 @@ const width = isFullWidth ? 'width: 100%;' : 'width: fit-content;';
 <style>
     button {
         display: inline-block;
-        padding: 0.7rem 1.4rem;
+        padding: var(--gap-size-1) var(--gap-size-2);
         width: 100%;
-        border-radius: 6px;
+        border-radius: var(--border-radius);
         background: var(--bg-color);
         color: var(--primary-color);
         border: var(--border-color) solid 1px;
-        font-size: 1.1rem;
-        font-weight: 400;
+        font-size: 105%;
+        font-weight: var(--font-weight-default);
         cursor: pointer;
         transition: border 0.3s ease, all 0.3s ease;
     }

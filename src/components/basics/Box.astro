@@ -1,0 +1,40 @@
+---
+import {Astro} from "astro/env";
+
+export interface Props {
+    clickable?: boolean,
+    hoverable?: boolean,
+}
+
+const {hoverable = false, clickable = false} = Astro.props;
+
+const hoverClass = hoverable ? "hover " : "";
+const clickableClass = clickable ? "clickable " : "";
+---
+
+<div class={"box " + hoverClass + clickableClass}>
+    <slot />
+</div>
+
+<style>
+    .box {
+        padding: var(--gap-size-2);
+        margin: var(--gap-size-3) 0;
+        border-radius: var(--border-radius);
+        background: var(--mid-bg-color);
+        border: 1px solid var(--light-bg-color);
+    }
+
+    .clickable {
+        cursor: pointer;
+    }
+
+    .hover {
+        transition: 0.3s ease-in-out;
+    }
+
+    .hover:hover {
+        border: var(--primary-color) solid 1px;
+        box-shadow: 0 0 12px rgba(var(--primary-color-rgb), 0.25) ;
+    }
+</style>

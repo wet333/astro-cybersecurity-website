@@ -1,4 +1,5 @@
 ---
+import Box from "./basics/Box.astro";
 interface Props {
     title: string;
     description: string;
@@ -9,41 +10,30 @@ interface Props {
 const { title, description, image, alt = "service_icon" } = Astro.props;
 ---
 
-<li class="card-grid">
-    <div class="card-grid__image">
-        {image && <img src={image} alt={alt}>}
-    </div>
-    <h3 class="card-grid__title">{ title }</h3>
-    <p class="card-grid__description">{ description }</p>
+<li>
+    <Box hoverable={true} clickable={true}>
+        <div class="image-wrapper">
+            {image && <img src={image} alt={alt}>}
+        </div>
+        <h3 class="title">{ title }</h3>
+        <p class="description">{ description }</p>
+    </Box>
 </li>
 
 <style>
-    .card-grid {
+    li {
         display: flex;
-        background: var(--mid-bg-color);
-        color: var(--font-color);
-        padding: 1rem 2rem 2rem;
-        margin: 12px 0;
-        border-radius: 6px;
-        flex-direction: column;
-        transition: 0.3s ease-in-out;
     }
-    .card-grid:hover {
-        background: var(--mid-hover-color);
-        color: var(--font-color);
-        cursor: pointer;
+
+    .image-wrapper {
+        margin-bottom: var(--gap-size-1);
     }
-    .card-grid__image {
-        margin-bottom: 0.2rem;
-    }
-    .card-grid__title {
+    .title {
         font-size: 150%;
         margin: 0;
-        padding: 0;
         color: var(--primary-color);
     }
-    .card-grid__description {
-        padding: 0;
-        margin: 1rem 0 0;
+    .description {
+        margin: var(--gap-size-1) 0 0;
     }
 </style>

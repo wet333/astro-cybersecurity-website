@@ -17,8 +17,8 @@ const { title } = Astro.props;
 		<title>{title}</title>
 
 		<!-- Google Fonts -->
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;600;700;800;900&display=swap">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap">
 
 		<!-- Add Fontawesome -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
@@ -34,7 +34,8 @@ const { title } = Astro.props;
 	:root {
 		/* Fonts */
 		--font-color: #e9e9e9;
-		--font-size: 18px;
+		--font-size: 16px;
+		--font-weight-default: 300;
 
 		/* Colors */
 		--primary-color: #78bbed;
@@ -42,7 +43,7 @@ const { title } = Astro.props;
 		--light-bg-color: #20242f;
 		--border-color: #78bbed45;
 		--mid-hover-color: #131b31;
-		--mid-bg-color: #181b23;
+		--mid-bg-color: #0d111a;
 		--bg-color: #080a10;
 
 		/* RGB Values */
@@ -54,6 +55,13 @@ const { title } = Astro.props;
 		--mid-hover-color-rgb: 19, 27, 49;
 		--mid-bg-color-rgb: 24, 27, 35;
 		--bg-color-rgb: 8, 10, 16;
+
+		/* Spaces */
+		--border-radius: 4px;
+
+		--gap-size-1: 12px;
+		--gap-size-2: 20px;
+		--gap-size-3: 32px;
 	}
 
 	html {
@@ -61,6 +69,7 @@ const { title } = Astro.props;
 		color: var(--font-color);
 		background: var(--bg-color);
 		font-size: var(--font-size);
+		font-weight: var(--font-weight-default);
 	}
 
 	* {
@@ -69,6 +78,14 @@ const { title } = Astro.props;
 
 	h1, h2, h3, h4, h5, h6 {
 		font-family: 'Montserrat', sans-serif;
+	}
+
+	h1, h2 {
+		font-weight: 700;
+	}
+
+	h3, h4, h5, h6 {
+		font-weight: 500;
 	}
 
 	body {
