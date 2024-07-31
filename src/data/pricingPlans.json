@@ -1,6 +1,6 @@
 [
   {
-    "description": "Basic Plan",
+    "description": "Basic Tier",
     "price": 5.99,
     "buttonLabel": "Get Started",
     "perkList": [
@@ -23,7 +23,7 @@
     ]
   },
   {
-    "description": "Pro Plan",
+    "description": "Pro Tier",
     "price": 19.99,
     "buttonLabel": "Upgrade Now",
     "perkList": [
@@ -46,7 +46,7 @@
     ]
   },
   {
-    "description": "Enterprise Plan",
+    "description": "Enterprise Tier",
     "price": 49.99,
     "buttonLabel": "Contact Sales",
     "perkList": [

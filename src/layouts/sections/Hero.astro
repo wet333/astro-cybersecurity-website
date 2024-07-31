@@ -7,16 +7,17 @@ import Button from "../../components/Button.astro"
 
 const imageStyles = "width: 100%; max-width: 1200px; height: 75vh; filter: hue-rotate(15deg) saturate(0.65) opacity(0.5); object-fit: cover;";
 const blendStyle = "mix-blend-mode: lighten;";
-const maskStyle = "-webkit-mask-image: radial-gradient(black 30%, transparent 70%);";
+const maskStyle = "-webkit-mask-image: linear-gradient(0deg, black 50%, transparent 95%);";
 ---
 
 <Section hasSeparator={false} isFullWidth={true}>
-    <Image src={HeroImage} alt="Cybershield hero image" style={imageStyles + blendStyle + maskStyle}/>
+    <!--<Image src={HeroImage} alt="Cybershield hero image" style={imageStyles + blendStyle + maskStyle}/>-->
+    <img src="/images/hero/team_01.jpg" alt="Cybershield family" style={imageStyles + blendStyle + maskStyle} />
     <div class="front-face">
         <div class="hero-wrapper">
             <NavBar />
             <div class="hero-contents">
-                <h1>Welcome to Cybershield</h1>
+                <h1>Cybershield</h1>
                 <p>We provide top-notch cybersecurity services to protect your business from cyber threats.</p>
                 <Button label="Click here!" />
             </div>

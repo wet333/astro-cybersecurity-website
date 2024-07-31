@@ -1,0 +1,139 @@
+---
+import {Astro} from "astro/env";
+
+interface ClientProfile {
+    name: string;
+    industry: string;
+    size?: string;
+    employees?: number;
+    annualRevenue?: string;
+    transactionsDaily?: string;
+    populationServed?: number;
+}
+
+interface CaseStudy {
+    title: string;
+    image: string;
+    clientProfile: ClientProfile;
+    challenge: string;
+    solution: string[];
+    results: string[];
+}
+
+export interface Props {
+    caseStudy: CaseStudy;
+}
+
+const { caseStudy } = Astro.props;
+---
+
+<div class="container">
+    <h2>{caseStudy.title}</h2>
+    <div class="row content">
+        <img src={caseStudy.image} alt={caseStudy.title} width="270px" />
+        <div class="col">
+            <div class="profile">
+                <h3>Client Profile</h3>
+                <div class="profile-list">
+                    {Object.entries(caseStudy.clientProfile).map(([key, value]) => (
+                            <div><strong>{key}:</strong><span>{value}</span></div>
+                    ))}
+                </div>
+            </div>
+            <div>
+                <h3>Challenge</h3>
+                <p>{caseStudy.challenge}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="cols-2">
+        <div>
+            <h3>Solution</h3>
+            <ul>
+                {caseStudy.solution.map(item => (<li>{item}</li>))}
+            </ul>
+        </div>
+        <div>
+            <h3>Results</h3>
+            <ul>
+                {caseStudy.results.map(item => (<li>{item}</li>))}
+            </ul>
+        </div>
+    </div>
+</div>
+
+<style>
+    .container {
+        padding: 0.2rem 2rem 1rem;
+        margin-bottom: 4rem;
+        margin-top: 2rem;
+        background: var(--mid-bg-color);
+        border-radius: 0.4rem;
+        border: 1px solid var(--light-bg-color);
+    }
+
+    .content {
+        margin: 2rem 0 1rem;
+    }
+
+    .row {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        gap: 2rem;
+    }
+
+    @media (max-width: 830px) {
+        .row {
+            flex-direction: column;
+        }
+    }
+
+    .col {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .profile h3 {
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
+
+    .profile-list div {
+        margin: 0.2rem 0px 0.2rem;
+    }
+
+    .profile-list div strong {
+        text-transform: capitalize;
+        margin-right: 0.4rem;
+        color: var(--primary-color);
+    }
+
+    h3 {
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+
+    p {
+        filter: brightness(0.8);
+    }
+
+    ul {
+        margin-top: 0.75rem;
+    }
+
+    li {
+        margin-bottom: 0.2rem;
+    }
+
+    .cols-2 {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 450px), 1fr));
+        gap: 2rem;
+    }
+</style>

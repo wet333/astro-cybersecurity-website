@@ -44,11 +44,13 @@ const { description, price, perkList, buttonLabel } = Astro.props;
         transition: transform 0.3s ease;
     }
     .card-grid:hover {
-        transform: scale(1.05);
+        cursor: pointer;
     }
     .card-plan {
         color: var(--primary-color);
+        font-size: 120%;
     }
+
     .card-price {
         font-size: 3.6rem;
         font-weight: 700;

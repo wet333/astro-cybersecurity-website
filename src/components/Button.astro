@@ -10,7 +10,9 @@ const { label, isFullWidth = false, type = 'button' }: Props = Astro.props;
 const width = isFullWidth ? 'width: 100%;' : 'width: fit-content;';
 ---
 
-<button style={ width } type={ type }>{ label }</button>
+<button style={ width } type={ type }>
+    <span>{ label }</span>
+</button>
 
 <style>
     button {
@@ -22,13 +24,16 @@ const width = isFullWidth ? 'width: 100%;' : 'width: fit-content;';
         color: var(--primary-color);
         border: var(--border-color) solid 1px;
         font-size: 1.1rem;
-        font-weight: 700;
+        font-weight: 400;
         cursor: pointer;
-        transition: background 0.3s ease, color 0.3s ease;
+        transition: border 0.3s ease, all 0.3s ease;
     }
     button:hover {
-        background: var(--primary-color);
-        border: transparent solid 1px;
-        color: var(--bg-color);
+        border: var(--primary-color) solid 1px;
+        box-shadow: 0 0 12px rgba(var(--primary-color-rgb), 0.25) ;
+    }
+    button:hover span {
+        filter: brightness(1.25);
+        text-shadow: 0 0 12px rgba(var(--primary-color-rgb), 0.35);
     }
 </style>

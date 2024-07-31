@@ -1,0 +1,13 @@
+---
+
+import Section from "../Section.astro";
+import SectionTitle from "../../components/SectionTitle.astro";
+import CaseStudy from "../../components/CaseStudy.astro";
+
+import caseStudies from "../../data/caseStudies.json";
+---
+
+<Section hasSeparator={true} isFullWidth={false}>
+    <SectionTitle title="Case Studies" sectionId="case-studies-section"/>
+    {caseStudies.map((item) => <CaseStudy caseStudy={item} />)}
+</Section>

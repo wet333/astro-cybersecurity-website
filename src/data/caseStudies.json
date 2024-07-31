@@ -1,0 +1,79 @@
+[
+  {
+    "title": "Preventing a Ransomware Attack at MidWest Manufacturing Co.",
+    "image": "/images/caseStudies/00026-3577403427.png",
+    "clientProfile": {
+      "name": "MidWest Manufacturing Co.",
+      "industry": "Industrial Equipment Manufacturing",
+      "size": "Medium",
+      "employees": 500,
+      "annualRevenue": "$100 million"
+    },
+    "challenge": "Experienced suspicious emails and minor security breaches, raising concerns about vulnerability to cyber attacks. Legacy security system was outdated, and employees lacked proper cybersecurity training.",
+    "solution": [
+      "Deployed Cybershield Pro across all company devices",
+      "Conducted a thorough security audit and vulnerability assessment",
+      "Implemented advanced email filtering and phishing protection",
+      "Provided customized cybersecurity training for all employees",
+      "Set up a 24/7 monitoring and incident response team"
+    ],
+    "results": [
+      "Detected and neutralized a sophisticated ransomware attack attempt, preventing potential losses of $2.5 million",
+      "Employee phishing test success rates improved from 62% to 98% within six months",
+      "Overall security incidents decreased by 78% in the first year",
+      "15% increase in client trust due to improved security measures"
+    ]
+  },
+  {
+    "title": "Securing Cloud Infrastructure for FinTech Startup",
+    "image": "/images/caseStudies/00033-3336514570.png",
+    "clientProfile": {
+      "name": "PayEase",
+      "industry": "Financial Technology",
+      "size": "Startup",
+      "transactionsDaily": "over 1 million"
+    },
+    "challenge": "Faced increasing challenges in securing cloud-based infrastructure during rapid growth. Experienced a minor data breach exposing 10,000 user records, damaging reputation and risking regulatory non-compliance.",
+    "solution": [
+      "Implemented Cybershield's AI-powered threat intelligence system",
+      "Deployed a custom Security Information and Event Management (SIEM) solution",
+      "Conducted rigorous penetration testing of cloud infrastructure",
+      "Implemented strict access controls and encryption protocols",
+      "Provided compliance consulting for PCI DSS and GDPR",
+      "Established a dedicated security team for ongoing monitoring and support"
+    ],
+    "results": [
+      "Zero security breaches in the 18 months following implementation",
+      "Achieved full PCI DSS and GDPR compliance",
+      "Reduced false positive security alerts by 92%, improving response times",
+      "Successfully passed five independent security audits",
+      "Customer base grew by 150% due to increased trust in security measures"
+    ]
+  },
+  {
+    "title": "Protecting a Hospital Network from Cyber Threats",
+    "image": "/images/caseStudies/00041-3004468299.png",
+    "clientProfile": {
+      "name": "Greenwood Medical Center",
+      "industry": "Healthcare",
+      "employees": 2000,
+      "populationServed": 500000
+    },
+    "challenge": "Faced increasing cybersecurity threats, including attempts to access patient records and disrupt critical systems. Needed a solution to protect sensitive patient data while ensuring uninterrupted access to vital medical systems.",
+    "solution": [
+      "Deployed Cybershield Enterprise across all hospital systems",
+      "Implemented segmented network architecture to isolate critical systems",
+      "Installed advanced IoT security measures for medical devices",
+      "Provided specialized training for medical staff on data protection",
+      "Implemented a robust disaster recovery and business continuity plan",
+      "Established 24/7 on-site support team"
+    ],
+    "results": [
+      "Successfully thwarted a targeted ransomware attack, saving an estimated $3.7 million in potential damages",
+      "Achieved HIPAA compliance with zero violations in the subsequent two years",
+      "Reduced unauthorized access attempts to patient records by 99.7%",
+      "Improved system uptime from 99.1% to 99.99%, critical for life-saving equipment",
+      "Increased staff confidence in using digital systems, leading to a 25% improvement in efficiency of electronic health record usage"
+    ]
+  }
+]

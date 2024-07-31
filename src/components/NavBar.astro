@@ -5,8 +5,7 @@ import contacts from '../data/contacts.json'
 <nav>
     <div class="left-col">
         <div class="logotype">
-            <img src="/images/shield.png" alt="Cyber Shield Logo" width="32px" height="32px">
-            <span>Cybershield</span>
+            <img src="/images/logotype/black_logo.svg" alt="Cyber Shield Logo" />
         </div>
         <div class="links">
             <a href="#about-section">About</a>
@@ -52,9 +51,12 @@ import contacts from '../data/contacts.json'
         align-content: center;
         flex-wrap: nowrap;
         gap: 0.5rem;
+        margin-right: 0.4rem;
+        padding-bottom: 6px;
     }
     .logotype img {
-        filter: saturate(0.5) brightness(1.3);
+        height: 30px;
+        filter: invert(1) brightness(0.9);
     }
     .logotype span {
         font-family: 'Source Sans 3', sans-serif;
