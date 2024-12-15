@@ -7,9 +7,17 @@ import Hero from "../layouts/sections/Hero.astro";
 import Contact from "../layouts/sections/Contact.astro";
 import Footer from "../layouts/sections/Footer.astro";
 import CaseStudies from "../layouts/sections/CaseStudies.astro";
+
+const meta = {
+    title: "Cybershield | Home",
+    description: "Cybershield secures and monitors your company's cybersecurity, providing robust protection against threats and ensuring compliance in a rapidly evolving digital landscape.",
+    url: 'https://astro-cybersecurity-website.vercel.app/',
+    image: 'https://astro-cybersecurity-website.vercel.app/meta-image.webp'
+};
+
 ---
 
-<Layout title="Shield Cybersecurity">
+<Layout meta={meta}>
     <Hero />
     <About />
     <Services />
