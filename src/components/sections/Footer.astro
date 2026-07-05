@@ -1,0 +1,108 @@
+---
+import Container from '~/components/ui/Container.astro';
+import Icon from '~/components/ui/Icon.astro';
+import Link from '~/components/ui/Link.astro';
+import Logo from '~/components/ui/Logo.astro';
+import Text from '~/components/ui/Text.astro';
+import contactData from '~/data/contacts.json';
+import type { ContactData } from '~/types';
+
+const contact = contactData as ContactData;
+const year = new Date().getFullYear();
+
+const linkGroups = [
+    {
+        title: 'Platform',
+        links: [
+            { label: 'About', href: '#about-section' },
+            { label: 'Services', href: '#services-section' },
+            { label: 'Case Studies', href: '#case-studies-section' },
+        ],
+    },
+    {
+        title: 'Company',
+        links: [
+            { label: 'Plans', href: '#plans-section' },
+            { label: 'FAQ', href: '#faq-section' },
+            { label: 'Contact', href: '#contact-section' },
+        ],
+    },
+];
+---
+
+<footer class="relative border-t border-primary/15">
+    <Container class="relative py-12 sm:py-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+            <div class="lg:col-span-1 space-y-4">
+                <Logo size="sm" />
+                <Text size="sm" color="muted" class="max-w-xs">
+                    Proactive cybersecurity for businesses that can't afford to be the next headline.
+                </Text>
+                <div class="flex items-center gap-3">
+                    <a
+                        href="#"
+                        aria-label="Twitter"
+                        class="h-9 w-9 inline-flex items-center justify-center rounded border border-primary/20 text-font/70 hover:text-primary hover:border-primary/50 hover:shadow-glow-sm transition-all"
+                    >
+                        <Icon name="fa-brands fa-twitter" />
+                    </a>
+                    <a
+                        href="#"
+                        aria-label="LinkedIn"
+                        class="h-9 w-9 inline-flex items-center justify-center rounded border border-primary/20 text-font/70 hover:text-primary hover:border-primary/50 hover:shadow-glow-sm transition-all"
+                    >
+                        <Icon name="fa-brands fa-linkedin-in" />
+                    </a>
+                    <a
+                        href="#"
+                        aria-label="GitHub"
+                        class="h-9 w-9 inline-flex items-center justify-center rounded border border-primary/20 text-font/70 hover:text-primary hover:border-primary/50 hover:shadow-glow-sm transition-all"
+                    >
+                        <Icon name="fa-brands fa-github" />
+                    </a>
+                </div>
+            </div>
+
+            {linkGroups.map((group) => (
+                <div class="space-y-4">
+                    <h3 class="text-mono text-xs uppercase tracking-wider text-primary font-medium">
+                        {group.title}
+                    </h3>
+                    <ul class="flex flex-col gap-3">
+                        {group.links.map((link) => (
+                            <li>
+                                <Link href={link.href} variant="footer">
+                                    {link.label}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            ))}
+
+            <div class="space-y-4">
+                <h3 class="text-mono text-xs uppercase tracking-wider text-primary font-medium">
+                    Contact
+                </h3>
+                <ul class="flex flex-col gap-3 text-font/60">
+                    <li>
+                        <a href={`mailto:${contact.email}`} class="hover:text-primary transition-colors break-all">
+                            {contact.email}
+                        </a>
+                    </li>
+                    <li>
+                        <a href={`tel:${contact.phone}`} class="hover:text-primary transition-colors">
+                            {contact.phone}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mt-12 pt-6 border-t border-primary/15 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <p class="text-mono text-xs uppercase tracking-wider text-font/50">
+                © {year} Cybershield. All systems nominal.
+            </p>
+        </div>
+    </Container>
+</footer>

@@ -1,0 +1,24 @@
+---
+interface Props {
+    href: string;
+    variant?: 'default' | 'nav' | 'footer';
+    external?: boolean;
+    class?: string;
+}
+
+const { href, variant = 'default', external = false, class: className = '' } = Astro.props;
+
+const variantClasses: Record<string, string> = {
+    default: 'text-font/80 hover:text-primary transition-colors duration-200',
+    nav: 'text-font/85 hover:text-primary transition-colors duration-200 text-mono text-sm uppercase tracking-wider',
+    footer: 'text-font/60 hover:text-primary transition-colors duration-200 text-sm',
+};
+---
+
+<a
+    href={href}
+    class:list={[variantClasses[variant], className]}
+    {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+>
+    <slot />
+</a>

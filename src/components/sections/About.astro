@@ -1,0 +1,60 @@
+---
+import Card from '~/components/ui/Card.astro';
+import Container from '~/components/ui/Container.astro';
+import Eyebrow from '~/components/ui/Eyebrow.astro';
+import Grid from '~/components/ui/Grid.astro';
+import Heading from '~/components/ui/Heading.astro';
+import Section from '~/components/ui/Section.astro';
+import Text from '~/components/ui/Text.astro';
+import aboutPageInfo from '~/data/aboutUsData.json';
+---
+
+<Section id="about-section" background="none" divider="top" separator>
+    <Container>
+        <div class="max-w-2xl mb-12" data-reveal>
+            <Eyebrow prefix="01 /">About Cybershield</Eyebrow>
+            <Heading level={2} size="h1" class="mt-3">
+                A team that lives at the
+                <span class="text-gradient">front line</span>
+                of digital defense.
+            </Heading>
+        </div>
+
+        <Grid cols={2} gap="lg" class="items-stretch">
+            <div data-reveal data-reveal-delay="100">
+                <div class="relative h-full min-h-[320px] overflow-hidden rounded">
+                    <img
+                        src="/images/company-team.jpg"
+                        alt="The Cybershield team at work"
+                        class="absolute inset-0 h-full w-full object-cover"
+                        loading="lazy"
+                    />
+                    <div
+                        class="absolute inset-0"
+                        style="background: linear-gradient(135deg, rgba(120,187,237,0.18) 0%, rgba(184,120,237,0.12) 50%, rgba(8,10,16,0.55) 100%);"
+                        aria-hidden="true"
+                    ></div>
+                    <div class="absolute inset-0 border border-primary/25 rounded" aria-hidden="true"></div>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-6" data-reveal data-reveal-delay="200">
+                <Text size="lead" color="muted">
+                    {aboutPageInfo.description}
+                </Text>
+                <Card tone="strong" class="relative">
+                    <i
+                        class="fa-solid fa-quote-left absolute top-4 right-4 text-primary/30 text-3xl"
+                        aria-hidden="true"
+                    ></i>
+                    <Text size="lg" class="italic text-font/90 leading-relaxed">
+                        {aboutPageInfo.quote}
+                    </Text>
+                    <p class="mt-4 text-mono text-xs uppercase tracking-wider text-primary">
+                        — {aboutPageInfo.author}
+                    </p>
+                </Card>
+            </div>
+        </Grid>
+    </Container>
+</Section>

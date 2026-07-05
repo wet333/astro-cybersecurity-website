@@ -1,0 +1,30 @@
+---
+interface Props {
+    cols?: 1 | 2 | 3 | 4 | 5 | 6;
+    gap?: 'sm' | 'md' | 'lg' | 'xl';
+    as?: string;
+    class?: string;
+}
+
+const { cols = 3, gap = 'md', as: Tag = 'div', class: className = '' } = Astro.props;
+
+const colsClasses: Record<number, string> = {
+    1: 'grid-cols-1',
+    2: 'grid-cols-1 sm:grid-cols-2',
+    3: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3',
+    4: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4',
+    5: 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-5',
+    6: 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-6',
+};
+
+const gapClasses: Record<string, string> = {
+    sm: 'gap-4',
+    md: 'gap-6',
+    lg: 'gap-8',
+    xl: 'gap-10',
+};
+---
+
+<Tag class:list={['grid', colsClasses[cols], gapClasses[gap], className]}>
+    <slot />
+</Tag>

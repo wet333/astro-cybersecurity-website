@@ -1,0 +1,51 @@
+---
+interface Props {
+    level?: 1 | 2 | 3 | 4 | 5 | 6;
+    size?: 'display' | 'h1' | 'h2' | 'h3' | 'h4' | 'eyebrow';
+    color?: 'default' | 'primary' | 'accent' | 'muted' | 'gradient';
+    as?: string;
+    class?: string;
+}
+
+const {
+    level = 2,
+    size,
+    color = 'default',
+    as: Tag,
+    class: className = '',
+} = Astro.props;
+
+// Default size by level
+const defaultSizeMap: Record<number, string> = {
+    1: 'h1',
+    2: 'h2',
+    3: 'h3',
+    4: 'h4',
+    5: 'h4',
+    6: 'h4',
+};
+
+const effectiveSize = size ?? defaultSizeMap[level];
+const ResolvedTag = (Tag ?? `h${level}`) as keyof HTMLElementTagNameMap;
+
+const sizeClasses: Record<string, string> = {
+    display: 'text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-tight',
+    h1: 'text-3xl sm:text-4xl md:text-5xl font-bold leading-tight tracking-tight',
+    h2: 'text-2xl sm:text-3xl md:text-4xl font-bold leading-tight',
+    h3: 'text-xl sm:text-2xl font-semibold leading-snug',
+    h4: 'text-lg sm:text-xl font-semibold leading-snug',
+    eyebrow: 'text-xs sm:text-sm font-medium uppercase tracking-[0.18em] text-mono',
+};
+
+const colorClasses: Record<string, string> = {
+    default: 'text-font',
+    primary: 'text-primary',
+    accent: 'text-accent',
+    muted: 'text-font/70',
+    gradient: 'text-gradient',
+};
+---
+
+<ResolvedTag class:list={['font-display', sizeClasses[effectiveSize], colorClasses[color], className]}>
+    <slot />
+</ResolvedTag>

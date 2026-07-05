@@ -1,11 +1,24 @@
 ---
+import '~/styles/global.css';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+import '@fontsource/montserrat/500.css';
+import '@fontsource/montserrat/600.css';
+import '@fontsource/montserrat/700.css';
+import '@fontsource/montserrat/800.css';
+import '@fontsource/jetbrains-mono/400.css';
+import '@fontsource/jetbrains-mono/500.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 interface Props {
-	meta: {
-		title: string,
-		description: string,
-		url?: string,
-		image?: string,
-	}
+    meta: {
+        title: string;
+        description: string;
+        url?: string;
+        image?: string;
+    };
 }
 
 const { meta } = Astro.props;
@@ -13,114 +26,47 @@ const { meta } = Astro.props;
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon/shield.png" />
-		<meta name="generator" content={Astro.generator} />
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon/shield.png" />
+        <meta name="generator" content={Astro.generator} />
 
-		<title>{meta.title}</title>
-		<meta name="description" content={meta.description} />
-		<meta name="author" content="Astro Cybersecurity Team" />
-		<meta name="keywords" content="cybersecurity, online security, data protection, hacking prevention, cybersecurity tools, cyber threats" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{meta.title}</title>
+        <meta name="description" content={meta.description} />
+        <meta name="author" content="Astro Cybersecurity Team" />
+        <meta name="keywords" content="cybersecurity, online security, data protection, hacking prevention, cybersecurity tools, cyber threats" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-		<!-- Open Graph Metadata -->
-		<meta property="og:title" content={meta.title} />
-		<meta property="og:description" content={meta.description} />
-		<meta property="og:url" content={meta.url} />
-		<meta property="og:type" content="website" />
-		<meta property="og:image" content={meta.image || 'https://astro-cybersecurity-website.vercel.app/default-og-image.png'} />
+        <!-- Open Graph Metadata -->
+        <meta property="og:title" content={meta.title} />
+        <meta property="og:description" content={meta.description} />
+        <meta property="og:url" content={meta.url} />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={meta.image || 'https://astro-cybersecurity-website.vercel.app/default-og-image.png'} />
 
-		<!-- Twitter Metadata -->
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content={meta.title} />
-		<meta name="twitter:description" content={meta.description} />
-		<meta name="twitter:image" content={meta.image || 'https://astro-cybersecurity-website.vercel.app/default-twitter-image.png'} />
+        <!-- Twitter Metadata -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={meta.title} />
+        <meta name="twitter:description" content={meta.description} />
+        <meta name="twitter:image" content={meta.image || 'https://astro-cybersecurity-website.vercel.app/default-twitter-image.png'} />
 
-		<!-- Canonical Link -->
-		<link rel="canonical" href={meta.url} />
-		<meta name="robots" content="index, follow" />
+        <!-- Canonical Link -->
+        <link rel="canonical" href={meta.url} />
+        <meta name="robots" content="index, follow" />
+    </head>
+    <body>
+        <slot />
 
-		<!-- Google Fonts -->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;600;700;800;900&display=swap">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap">
+        <script>
+            import { initReveal } from '~/scripts/reveal';
+            import { initCountUp } from '~/scripts/count-up';
+            import { initMobileMenu } from '~/scripts/mobile-menu';
+            import { initAccordionClick } from '~/scripts/accordion-click';
 
-		<!-- Add Fontawesome -->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
-
-		<!-- Add Tailwind CDN -->
-		<script src="https://cdn.tailwindcss.com"></script>
-	</head>
-	<body>
-		<slot />
-	</body>
+            initReveal();
+            initCountUp();
+            initMobileMenu();
+            initAccordionClick();
+        </script>
+    </body>
 </html>
-<style is:global>
-	:root {
-		/* Fonts */
-		--font-color: #e9e9e9;
-		--font-size: 16px;
-		--font-weight-default: 300;
-
-		/* Colors */
-		--primary-color: #78bbed;
-		--accent-color: #b878ed;
-		--light-bg-color: #20242f;
-		--border-color: #78bbed45;
-		--mid-hover-color: #131b31;
-		--mid-bg-color: #0d111a;
-		--bg-color: #080a10;
-
-		/* RGB Values */
-		--font-color-rgb: 233, 233, 233;
-		--primary-color-rgb: 120, 187, 237;
-		--accent-color-rgb: 184, 120, 237;
-		--light-bg-color-rgb: 32, 36, 47;
-		--border-color-rgba: 120, 187, 237, 0.27;
-		--mid-hover-color-rgb: 19, 27, 49;
-		--mid-bg-color-rgb: 24, 27, 35;
-		--bg-color-rgb: 8, 10, 16;
-
-		/* Spaces */
-		--border-radius: 4px;
-
-		--gap-size-1: 12px;
-		--gap-size-2: 20px;
-		--gap-size-3: 32px;
-	}
-
-	html {
-		font-family: 'Roboto', sans-serif;
-		color: var(--font-color);
-		background: var(--bg-color);
-		font-size: var(--font-size);
-		font-weight: var(--font-weight-default);
-	}
-
-	* {
-		box-sizing: border-box;
-	}
-
-	h1, h2, h3, h4, h5, h6 {
-		font-family: 'Montserrat', sans-serif;
-	}
-
-	h1, h2 {
-		font-weight: 700;
-	}
-
-	h3, h4, h5, h6 {
-		font-weight: 500;
-	}
-
-	body {
-		padding: 0;
-		margin: 0;
-	}
-
-	p {
-		line-height: 1.5rem;
-	}
-</style>

@@ -1,0 +1,68 @@
+---
+import Card from '~/components/ui/Card.astro';
+import Container from '~/components/ui/Container.astro';
+import Eyebrow from '~/components/ui/Eyebrow.astro';
+import Heading from '~/components/ui/Heading.astro';
+import Section from '~/components/ui/Section.astro';
+import Text from '~/components/ui/Text.astro';
+import services from '~/data/serviceList.json';
+import type { Service } from '~/types';
+
+const list = services as Service[];
+const featured = [0, 3, 7]; // indices that span 2 columns in the bento
+---
+
+<Section id="services-section" background="none" separator>
+    <Container>
+        <div class="max-w-2xl mb-12" data-reveal>
+            <Eyebrow prefix="02 /">Capabilities</Eyebrow>
+            <Heading level={2} size="h1" class="mt-3">
+                A full-stack defense,
+                <span class="text-gradient">modular by design</span>.
+            </Heading>
+            <Text size="lead" color="muted" class="mt-5">
+                Pick the components you need. Pay only for what protects you.
+            </Text>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {list.map((service, i) => (
+                <div
+                    class:list={[
+                        featured.includes(i) ? 'sm:col-span-2' : '',
+                    ]}
+                    data-reveal
+                    data-reveal-delay={i * 60}
+                >
+                    <Card hover class="h-full flex flex-col gap-3 group">
+                        <div class="flex items-start justify-between">
+                            {service.image ? (
+                                <div class="inline-flex items-center justify-center h-12 w-12 rounded border border-primary/30 bg-primary/5 text-primary group-hover:border-primary group-hover:shadow-glow transition-all duration-300">
+                                    <img
+                                        src={service.image}
+                                        alt={service.alt ?? service.title}
+                                        class="h-6 w-6 object-contain"
+                                        loading="lazy"
+                                    />
+                                </div>
+                            ) : (
+                                <div class="inline-flex items-center justify-center h-12 w-12 rounded border border-primary/30 bg-primary/5 text-primary">
+                                    <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+                                </div>
+                            )}
+                            <span class="text-mono text-xs text-font/40">
+                                {String(i + 1).padStart(2, '0')}
+                            </span>
+                        </div>
+                        <Heading level={3} size="h4" color="primary" class="mt-1">
+                            {service.title}
+                        </Heading>
+                        <Text size="sm" color="muted" class="mt-auto">
+                            {service.description}
+                        </Text>
+                    </Card>
+                </div>
+            ))}
+        </div>
+    </Container>
+</Section>

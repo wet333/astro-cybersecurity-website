@@ -1,0 +1,86 @@
+---
+import Card from '~/components/ui/Card.astro';
+import Container from '~/components/ui/Container.astro';
+import Icon from '~/components/ui/Icon.astro';
+import Text from '~/components/ui/Text.astro';
+
+const stats = [
+    {
+        value: 12,
+        suffix: 'M+',
+        prefix: '',
+        decimals: 0,
+        label: 'Threats blocked',
+        sub: 'last 90 days',
+        icon: 'fa-shield-halved',
+    },
+    {
+        value: 500,
+        suffix: '+',
+        prefix: '',
+        decimals: 0,
+        label: 'Clients protected',
+        sub: 'across 18 industries',
+        icon: 'fa-users',
+    },
+    {
+        value: 99.99,
+        suffix: '%',
+        prefix: '',
+        decimals: 2,
+        label: 'Platform uptime',
+        sub: '12-month rolling',
+        icon: 'fa-signal',
+    },
+    {
+        value: 4,
+        suffix: '+',
+        prefix: '',
+        decimals: 0,
+        label: 'Years in operation',
+        sub: 'since 2020',
+        icon: 'fa-bolt',
+    },
+];
+---
+
+<section class="relative py-16 sm:py-20 divider-bottom" aria-label="Cybershield by the numbers">
+    <Container class="relative">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+            {stats.map((stat, i) => (
+                <Card
+                    hover
+                    class="flex flex-col gap-2 sm:gap-3"
+                    data-reveal
+                    data-reveal-delay={i * 80}
+                >
+                    <div class="flex items-center justify-between">
+                        <span class="inline-flex h-9 w-9 items-center justify-center rounded border border-primary/30 bg-primary/5 text-primary">
+                            <Icon name={stat.icon} />
+                        </span>
+                        <span class="text-mono text-[0.65rem] text-font/40 uppercase tracking-wider">
+                            /{String(i + 1).padStart(2, '0')}
+                        </span>
+                    </div>
+                    <div
+                        class="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gradient leading-none"
+                        data-count-up={stat.value}
+                        data-count-suffix={stat.suffix}
+                        data-count-prefix={stat.prefix}
+                        data-count-decimals={stat.decimals}
+                    >
+                        0
+                    </div>
+                    <div>
+                        <p class="font-display font-semibold text-sm sm:text-base text-font">
+                            {stat.label}
+                        </p>
+                        <Text size="sm" color="muted" class="text-font/50">
+                            {stat.sub}
+                        </Text>
+                    </div>
+                </Card>
+            ))}
+        </div>
+    </Container>
+</section>

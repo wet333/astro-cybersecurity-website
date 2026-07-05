@@ -1,28 +1,38 @@
 ---
-import Layout from "../layouts/Layout.astro"
+import Layout from '~/layouts/Layout.astro';
+import Button from '~/components/ui/Button.astro';
+import Card from '~/components/ui/Card.astro';
+import Container from '~/components/ui/Container.astro';
+import Eyebrow from '~/components/ui/Eyebrow.astro';
+import Heading from '~/components/ui/Heading.astro';
+import Text from '~/components/ui/Text.astro';
 ---
 
-<Layout meta={{title: "404 Not Found", description: "Error Page: Not Found"}}>
-    <div>
-        <h1>404 - Page Not Found</h1>
-        <p>Sorry, the page you are looking for does not exist.</p>
-        <p><a href="/">Click to go home!</a></p>
+<Layout meta={{ title: '404 Not Found', description: 'Error Page: Not Found' }}>
+    <div class="min-h-[70vh] flex items-center justify-center py-20">
+        <Container size="md">
+            <div class="max-w-xl mx-auto text-center" data-reveal>
+                <Eyebrow color="accent" prefix="//">
+                    404 · Signal lost
+                </Eyebrow>
+                <Heading level={1} size="display" class="mt-3">
+                    <span class="text-gradient">Endpoint</span> not found.
+                </Heading>
+                <Text size="lead" color="muted" class="mt-5">
+                    The page you're looking for doesn't exist — or it has been
+                    quarantined. Let's get you back to safety.
+                </Text>
+                <div class="mt-8 flex justify-center">
+                    <Button
+                        label="Return to base"
+                        variant="gradient"
+                        size="lg"
+                        as="a"
+                        href="/"
+                        iconRight="fa-solid fa-arrow-right"
+                    />
+                </div>
+            </div>
+        </Container>
     </div>
 </Layout>
-
-<style>
-    div {
-        text-align: center;
-    }
-    h1 {
-        color: var(--primary-color);
-        font-size: 2rem;
-        margin-bottom: 1rem;
-    }
-    a {
-        color: var(--primary-color);
-    }
-    a:visited {
-        color: var(--accent-color);
-    }
-</style>

@@ -1,0 +1,30 @@
+---
+interface Props {
+    hover?: boolean;
+    glow?: boolean;
+    tone?: 'default' | 'strong';
+    as?: string;
+    class?: string;
+}
+
+const {
+    hover = false,
+    glow = false,
+    tone = 'default',
+    as: Tag = 'div',
+    class: className = '',
+} = Astro.props;
+
+const baseClasses = [
+    'relative p-6 sm:p-7',
+    'transition-all duration-300',
+    tone === 'strong' ? 'glass-strong' : 'glass',
+    hover ? 'hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-glow' : '',
+    glow ? 'shadow-glow' : '',
+    className,
+];
+---
+
+<Tag class:list={baseClasses}>
+    <slot />
+</Tag>

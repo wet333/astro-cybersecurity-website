@@ -1,0 +1,20 @@
+---
+interface Props {
+    color?: 'primary' | 'accent' | 'muted';
+    prefix?: string;
+    class?: string;
+}
+
+const { color = 'primary', prefix, class: className = '' } = Astro.props;
+
+const colorClasses: Record<string, string> = {
+    primary: 'text-primary',
+    accent: 'text-accent',
+    muted: 'text-font/60',
+};
+---
+
+<p class:list={['text-mono text-xs sm:text-sm uppercase tracking-[0.18em] font-medium mb-2', colorClasses[color], className]}>
+    {prefix && <span class="opacity-60 mr-2">{prefix}</span>}
+    <slot />
+</p>

@@ -1,0 +1,19 @@
+---
+interface Props {
+    name: string;
+    library?: 'fa' | 'fa-brands';
+    size?: 'sm' | 'md' | 'lg' | 'xl';
+    class?: string;
+}
+
+const { name, library = 'fa', size = 'md', class: className = '' } = Astro.props;
+
+const sizeClasses: Record<string, string> = {
+    sm: 'text-sm',
+    md: 'text-base',
+    lg: 'text-xl',
+    xl: 'text-2xl',
+};
+---
+
+<i class:list={[library, name, sizeClasses[size], className]} aria-hidden="true"></i>

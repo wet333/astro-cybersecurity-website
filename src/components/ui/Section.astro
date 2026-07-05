@@ -1,0 +1,108 @@
+---
+import Separator from './Separator.astro';
+
+interface Props {
+    id?: string;
+    variant?: 'locked' | 'full';
+    tone?: 'default' | 'panel' | 'tinted-cyan' | 'tinted-purple' | 'transparent';
+    separator?: boolean;
+    class?: string;
+    background?:
+        | 'none'
+        | 'grid'
+        | 'grid-lg'
+        | 'grid-fine'
+        | 'dots'
+        | 'circuit'
+        | 'glow-cyan'
+        | 'glow-purple'
+        | 'glow-both'
+        | 'glow-cyan-strong'
+        | 'glow-purple-strong'
+        | 'glow-center'
+        | 'noise';
+    divider?: 'none' | 'top' | 'bottom' | 'both';
+    spacing?: 'sm' | 'md' | 'lg';
+}
+
+const {
+    id,
+    variant = 'locked',
+    tone = 'default',
+    separator = false,
+    class: className = '',
+    background = 'grid',
+    divider = 'none',
+    spacing = 'md',
+} = Astro.props;
+
+const variantClasses: Record<string, string> = {
+    locked: 'mx-auto w-full max-w-6xl px-6 sm:px-8',
+    full: 'w-full',
+};
+
+const toneClasses: Record<string, string> = {
+    default: '',
+    panel: 'bg-panel',
+    'tinted-cyan': 'bg-tinted-cyan',
+    'tinted-purple': 'bg-tinted-purple',
+    transparent: '',
+};
+
+const toneSpacingClasses: Record<string, string> = {
+    default: 'py-16 sm:py-20 md:py-24',
+    panel: 'py-16 sm:py-20 md:py-24',
+    'tinted-cyan': 'py-16 sm:py-20 md:py-24',
+    'tinted-purple': 'py-16 sm:py-20 md:py-24',
+    transparent: 'py-12 sm:py-16 md:py-20',
+};
+
+const spacingClasses: Record<string, string> = {
+    sm: 'py-10 sm:py-14',
+    md: 'py-16 sm:py-20 md:py-24',
+    lg: 'py-20 sm:py-24 md:py-32',
+};
+
+const bgClasses: Record<string, string> = {
+    none: '',
+    grid: 'bg-grid',
+    'grid-lg': 'bg-grid-lg',
+    'grid-fine': 'bg-grid-fine',
+    dots: 'bg-dots',
+    circuit: 'bg-circuit',
+    'glow-cyan': 'bg-glow-cyan',
+    'glow-purple': 'bg-glow-purple',
+    'glow-both': 'bg-glow-cyan bg-glow-purple',
+    'glow-cyan-strong': 'bg-glow-cyan-strong',
+    'glow-purple-strong': 'bg-glow-purple-strong',
+    'glow-center': 'bg-glow-center',
+    noise: 'bg-noise',
+};
+
+const toneSpacing = tone === 'transparent' ? spacingClasses[spacing] : toneSpacingClasses[tone];
+const finalBg = tone === 'default' || tone === 'transparent' ? bgClasses[background] : '';
+const finalTone = tone !== 'default' && tone !== 'transparent' ? toneClasses[tone] : '';
+
+const dividerClasses = {
+    none: '',
+    top: 'divider-top',
+    bottom: 'divider-bottom',
+    both: 'divider-top divider-bottom',
+};
+---
+
+<section
+    id={id}
+    class:list={[
+        'relative scroll-mt-20 overflow-hidden',
+        variantClasses[variant],
+        toneSpacing,
+        finalBg,
+        finalTone,
+        dividerClasses[divider],
+        className,
+    ]}
+>
+    <slot />
+</section>
+{separator && <Separator />}

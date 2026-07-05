@@ -1,0 +1,21 @@
+---
+interface Props {
+    size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
+    as?: string;
+    class?: string;
+}
+
+const { size = 'lg', as: Tag = 'div', class: className = '' } = Astro.props;
+
+const sizeMap: Record<string, string> = {
+    sm: 'max-w-3xl',
+    md: 'max-w-5xl',
+    lg: 'max-w-6xl',
+    xl: 'max-w-7xl',
+    full: 'max-w-full',
+};
+---
+
+<Tag class:list={['mx-auto w-full px-6 sm:px-8', sizeMap[size], className]}>
+    <slot />
+</Tag>

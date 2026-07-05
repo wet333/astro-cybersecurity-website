@@ -1,0 +1,60 @@
+---
+import NavLink from './NavLink.astro';
+
+interface NavItem {
+    label: string;
+    href: string;
+}
+
+interface Props {
+    items: NavItem[];
+    class?: string;
+}
+
+const { items, class: className = '' } = Astro.props;
+---
+
+<div
+    id="mobile-menu"
+    data-mobile-menu
+    class:list={[
+        'fixed inset-0 z-40 lg:hidden',
+        'pointer-events-none opacity-0',
+        'transition-opacity duration-300',
+        className,
+    ]}
+    aria-hidden="true"
+>
+    <!-- Backdrop -->
+    <div
+        data-mobile-menu-backdrop
+        class="absolute inset-0 bg-bg-color/80 backdrop-blur-glass"
+    ></div>
+
+    <!-- Panel -->
+    <div
+        data-mobile-menu-panel
+        class="absolute right-0 top-0 h-full w-full max-w-sm glass-strong border-l border-primary/30 shadow-glow translate-x-full transition-transform duration-300 ease-out"
+    >
+        <div class="flex flex-col h-full p-6 pt-24">
+            <nav class="flex flex-col gap-1" aria-label="Mobile primary">
+                {items.map((item) => (
+                    <a
+                        href={item.href}
+                        data-mobile-menu-link
+                        class="block py-3 px-4 rounded text-font hover:bg-primary/10 hover:text-primary transition-colors text-mono uppercase tracking-wider text-sm"
+                    >
+                        {item.label}
+                    </a>
+                ))}
+            </nav>
+
+            <div class="mt-auto pt-6 border-t border-primary/20">
+                <p class="text-mono text-xs uppercase tracking-wider text-font/50 mb-3">
+                    Direct contact
+                </p>
+                <slot name="footer" />
+            </div>
+        </div>
+    </div>
+</div>
