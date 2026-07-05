@@ -1,0 +1,1 @@
+gitleaks protect --staged --redact --no-banner
