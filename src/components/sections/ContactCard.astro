@@ -1,0 +1,22 @@
+---
+import Card from '~/components/ui/Card.astro';
+import Icon from '~/components/ui/Icon.astro';
+
+interface Props {
+    icon: string;
+    label: string;
+    class?: string;
+}
+
+const { icon, label, class: className = '' } = Astro.props;
+---
+
+<Card tone="subtle" class:list={['flex flex-col gap-2.5', className]}>
+    <div class="flex items-center gap-2.5 text-calm">
+        <Icon name={icon} size="md" />
+        <p class="text-mono text-[0.7rem] uppercase tracking-[0.18em] font-medium">{label}</p>
+    </div>
+    <div class="text-base leading-relaxed text-ink-text">
+        <slot />
+    </div>
+</Card>

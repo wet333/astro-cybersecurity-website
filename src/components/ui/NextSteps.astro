@@ -1,0 +1,42 @@
+---
+interface Step {
+    title: string;
+    body: string;
+}
+
+interface Props {
+    steps?: Step[];
+    class?: string;
+}
+
+const defaultSteps: Step[] = [
+    { title: 'We respond',         body: 'A security engineer replies within 4 hours, every business day.' },
+    { title: 'Scoping call',       body: 'A 30-minute call to map your environment, threat model, and priorities.' },
+    { title: 'Threat assessment',  body: 'You receive a written report with findings, severity, and a clear next-step plan.' },
+];
+
+const { steps = defaultSteps, class: className = '' } = Astro.props;
+---
+
+<div class:list={['flex flex-col', className]}>
+    <p class="text-mono text-[0.7rem] uppercase tracking-[0.18em] text-ink-dim mb-5">
+        What happens next
+    </p>
+    <ol class="flex flex-col gap-5">
+        {steps.map((step, i) => (
+            <li class="flex gap-4">
+                <span class="flex-shrink-0 inline-flex items-center justify-center h-8 w-8 rounded-md bg-surface-raised border border-border text-mono text-xs font-semibold text-calm">
+                    {String(i + 1).padStart(2, '0')}
+                </span>
+                <div class="flex-1 pt-1">
+                    <h3 class="font-display font-semibold text-base text-ink-text leading-tight">
+                        {step.title}
+                    </h3>
+                    <p class="mt-1.5 text-sm text-ink-muted leading-relaxed">
+                        {step.body}
+                    </p>
+                </div>
+            </li>
+        ))}
+    </ol>
+</div>

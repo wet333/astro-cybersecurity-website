@@ -2,11 +2,11 @@
 interface Props {
     cols?: 1 | 2 | 3 | 4 | 5 | 6;
     gap?: 'sm' | 'md' | 'lg' | 'xl';
-    as?: string;
+    as?: 'div' | 'section' | 'article' | 'main' | 'aside' | 'header' | 'footer' | 'ul' | 'ol';
     class?: string;
 }
 
-const { cols = 3, gap = 'md', as: Tag = 'div', class: className = '' } = Astro.props;
+const { cols = 3, gap = 'md', as: Tag = 'div', class: className = '' }: Props = Astro.props;
 
 const colsClasses: Record<number, string> = {
     1: 'grid-cols-1',

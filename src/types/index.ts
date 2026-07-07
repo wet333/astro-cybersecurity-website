@@ -42,8 +42,3 @@ export interface ContactData {
     phone: string;
     email: string;
 }
-
-export interface NavItem {
-    label: string;
-    href: string;
-}

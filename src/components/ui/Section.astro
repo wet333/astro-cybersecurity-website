@@ -4,7 +4,8 @@ import Separator from './Separator.astro';
 interface Props {
     id?: string;
     variant?: 'locked' | 'full';
-    tone?: 'default' | 'panel' | 'tinted-cyan' | 'tinted-purple' | 'transparent';
+    tone?: 'default' | 'panel' | 'tinted-calm' | 'tinted-alert' | 'transparent';
+    density?: 'airy' | 'normal' | 'tight';
     separator?: boolean;
     class?: string;
     background?:
@@ -14,26 +15,27 @@ interface Props {
         | 'grid-fine'
         | 'dots'
         | 'circuit'
-        | 'glow-cyan'
-        | 'glow-purple'
+        | 'glow-calm'
+        | 'glow-alert'
         | 'glow-both'
-        | 'glow-cyan-strong'
-        | 'glow-purple-strong'
+        | 'glow-calm-strong'
+        | 'glow-alert-strong'
         | 'glow-center'
         | 'noise';
     divider?: 'none' | 'top' | 'bottom' | 'both';
-    spacing?: 'sm' | 'md' | 'lg';
+    edgeFade?: boolean;
 }
 
 const {
     id,
     variant = 'locked',
     tone = 'default',
+    density = 'normal',
     separator = false,
     class: className = '',
     background = 'grid',
     divider = 'none',
-    spacing = 'md',
+    edgeFade = true,
 } = Astro.props;
 
 const variantClasses: Record<string, string> = {
@@ -44,23 +46,15 @@ const variantClasses: Record<string, string> = {
 const toneClasses: Record<string, string> = {
     default: '',
     panel: 'bg-panel',
-    'tinted-cyan': 'bg-tinted-cyan',
-    'tinted-purple': 'bg-tinted-purple',
+    'tinted-calm': 'bg-tinted-calm',
+    'tinted-alert': 'bg-tinted-alert',
     transparent: '',
 };
 
-const toneSpacingClasses: Record<string, string> = {
-    default: 'py-16 sm:py-20 md:py-24',
-    panel: 'py-16 sm:py-20 md:py-24',
-    'tinted-cyan': 'py-16 sm:py-20 md:py-24',
-    'tinted-purple': 'py-16 sm:py-20 md:py-24',
-    transparent: 'py-12 sm:py-16 md:py-20',
-};
-
-const spacingClasses: Record<string, string> = {
-    sm: 'py-10 sm:py-14',
-    md: 'py-16 sm:py-20 md:py-24',
-    lg: 'py-20 sm:py-24 md:py-32',
+const densityClasses: Record<string, string> = {
+    airy: 'py-24 sm:py-32 md:py-40',
+    normal: 'py-20 sm:py-28 md:py-32',
+    tight: 'py-14 sm:py-20 md:py-24',
 };
 
 const bgClasses: Record<string, string> = {
@@ -70,16 +64,16 @@ const bgClasses: Record<string, string> = {
     'grid-fine': 'bg-grid-fine',
     dots: 'bg-dots',
     circuit: 'bg-circuit',
-    'glow-cyan': 'bg-glow-cyan',
-    'glow-purple': 'bg-glow-purple',
-    'glow-both': 'bg-glow-cyan bg-glow-purple',
-    'glow-cyan-strong': 'bg-glow-cyan-strong',
-    'glow-purple-strong': 'bg-glow-purple-strong',
+    'glow-calm': 'bg-glow-calm',
+    'glow-alert': 'bg-glow-alert',
+    'glow-both': 'bg-glow-both',
+    'glow-calm-strong': 'bg-glow-calm-strong',
+    'glow-alert-strong': 'bg-glow-alert-strong',
     'glow-center': 'bg-glow-center',
     noise: 'bg-noise',
 };
 
-const toneSpacing = tone === 'transparent' ? spacingClasses[spacing] : toneSpacingClasses[tone];
+const finalSpacing = densityClasses[density];
 const finalBg = tone === 'default' || tone === 'transparent' ? bgClasses[background] : '';
 const finalTone = tone !== 'default' && tone !== 'transparent' ? toneClasses[tone] : '';
 
@@ -94,15 +88,18 @@ const dividerClasses = {
 <section
     id={id}
     class:list={[
-        'relative scroll-mt-20 overflow-hidden',
+        'relative scroll-mt-24 overflow-hidden',
         variantClasses[variant],
-        toneSpacing,
+        finalSpacing,
         finalBg,
         finalTone,
         dividerClasses[divider],
+        edgeFade ? 'section-fade-edges' : '',
         className,
     ]}
 >
-    <slot />
+    <div class="relative z-10">
+        <slot />
+    </div>
 </section>
 {separator && <Separator />}

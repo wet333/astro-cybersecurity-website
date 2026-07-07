@@ -1,7 +1,7 @@
 [
   {
     "title": "Preventing a Ransomware Attack at MidWest Manufacturing Co.",
-    "image": "/images/caseStudies/00026-3577403427.png",
+    "image": "/images/caseStudies/manufacturing_facade.png",
     "clientProfile": {
       "name": "MidWest Manufacturing Co.",
       "industry": "Industrial Equipment Manufacturing",
@@ -26,7 +26,7 @@
   },
   {
     "title": "Securing Cloud Infrastructure for FinTech Startup",
-    "image": "/images/caseStudies/00033-3336514570.png",
+    "image": "/images/caseStudies/payease_datacentre.png",
     "clientProfile": {
       "name": "PayEase",
       "industry": "Financial Technology",
@@ -52,7 +52,7 @@
   },
   {
     "title": "Protecting a Hospital Network from Cyber Threats",
-    "image": "/images/caseStudies/00041-3004468299.png",
+    "image": "/images/caseStudies/old_english_hospital_city.png",
     "clientProfile": {
       "name": "Greenwood Medical Center",
       "industry": "Healthcare",

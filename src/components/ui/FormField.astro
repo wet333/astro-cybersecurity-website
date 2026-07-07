@@ -4,11 +4,13 @@ interface Props {
     name: string;
     label: string;
     type?: 'text' | 'email' | 'tel' | 'url';
+    multiline?: boolean;
     required?: boolean;
     placeholder?: string;
     rows?: number;
     value?: string;
     autocomplete?: string;
+    grow?: boolean;
 }
 
 const {
@@ -16,27 +18,36 @@ const {
     name,
     label,
     type = 'text',
+    multiline = false,
     required = false,
     placeholder,
     rows = 5,
     value,
     autocomplete,
+    grow = false,
 } = Astro.props;
 
-const isTextarea = type === 'textarea';
+const isTextarea = multiline;
 const Tag = isTextarea ? 'textarea' : 'input';
 const inputProps = isTextarea
     ? { id, name, rows, required, placeholder, autocomplete }
     : { id, name, type, required, placeholder, value, autocomplete };
 ---
 
-<div class="flex flex-col gap-1.5">
-    <label for={id} class="text-mono text-xs uppercase tracking-wider text-font/70 font-medium">
+<div class:list={['flex flex-col gap-2', grow ? 'flex-1 min-h-0' : '']}>
+    <label for={id} class="text-mono text-[0.7rem] uppercase tracking-[0.18em] text-ink-muted font-medium">
         {label}
-        {required && <span class="text-primary ml-0.5">*</span>}
+        {required && <span class="text-alert ml-0.5" aria-hidden="true">*</span>}
     </label>
     <Tag
         {...inputProps}
-        class="w-full bg-surface/80 border border-primary/20 rounded px-3 py-2.5 text-font placeholder:text-font/40 focus:border-primary focus:ring-1 focus:ring-primary/40 focus:outline-none transition-colors duration-200 form-input"
+        class:list={[
+            'w-full bg-surface border border-border rounded-md px-3.5 py-3 text-ink-text placeholder:text-ink-dim',
+            'focus:border-calm focus:ring-1 focus:ring-calm/50 focus:outline-none',
+            'transition-colors duration-200',
+            isTextarea
+                ? (grow ? 'form-textarea resize-y min-h-[180px] flex-1' : 'form-textarea resize-y min-h-[180px]')
+                : 'form-input h-11',
+        ]}
     />
 </div>

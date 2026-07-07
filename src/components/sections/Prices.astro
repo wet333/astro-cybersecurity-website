@@ -5,6 +5,7 @@ import Card from '~/components/ui/Card.astro';
 import Container from '~/components/ui/Container.astro';
 import Eyebrow from '~/components/ui/Eyebrow.astro';
 import Heading from '~/components/ui/Heading.astro';
+import Link from '~/components/ui/Link.astro';
 import Section from '~/components/ui/Section.astro';
 import Text from '~/components/ui/Text.astro';
 import priceOptions from '~/data/pricingPlans.json';
@@ -13,20 +14,20 @@ import type { PricingPlan } from '~/types';
 const plans = priceOptions as PricingPlan[];
 ---
 
-<Section id="plans-section" background="none" divider="top" separator>
+<Section id="plans-section" tone="tinted-alert" background="none">
     <Container>
-        <div class="max-w-2xl mb-12" data-reveal>
-            <Eyebrow prefix="04 /">Plans & Pricing</Eyebrow>
-            <Heading level={2} size="h1" class="mt-3">
+        <div class="max-w-2xl mb-14" data-reveal>
+            <Eyebrow color="calm" number="04">Plans &amp; Pricing</Eyebrow>
+            <Heading level={2} size="h1" class="mt-4">
                 Pick your
                 <span class="text-gradient">protection tier</span>.
             </Heading>
             <Text size="lead" color="muted" class="mt-5">
-                All plans include a <span class="text-font font-medium">30-day money-back</span> guarantee. Cancel any time.
+                All plans include a <span class="text-ink-text font-medium">30-day money-back</span> guarantee. Cancel any time.
             </Text>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 items-stretch">
             {plans.map((plan, i) => {
                 const featured = i === 1;
                 return (
@@ -37,7 +38,6 @@ const plans = priceOptions as PricingPlan[];
                         ]}
                         data-reveal
                         data-reveal-delay={i * 100}
-                        cursor-pointer
                     >
                         {featured && (
                             <div class="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
@@ -45,40 +45,39 @@ const plans = priceOptions as PricingPlan[];
                             </div>
                         )}
                         <Card
+                            tone={featured ? 'subtle-strong' : 'subtle'}
                             hover
-                            glow={featured}
-                            tone={featured ? 'strong' : 'default'}
                             class:list={[
-                                'h-full flex flex-col gap-6',
-                                featured ? 'border-primary/60' : '',
+                                'h-full flex flex-col gap-7',
+                                featured ? 'border-alert/50 shadow-glow-alert-sm' : '',
                             ]}
                         >
-                            <div class="text-center pb-4 border-b border-primary/15">
-                                <p class="text-mono text-xs uppercase tracking-wider text-primary font-medium">
+                            <div class="text-center pb-5 border-b border-border">
+                                <p class="text-mono text-[0.7rem] uppercase tracking-[0.18em] text-calm font-medium">
                                     {plan.description}
                                 </p>
-                                <div class="mt-3 flex items-baseline justify-center gap-1">
-                                    <span class="font-display text-5xl font-extrabold text-font">
-                                        {plan.price}
+                                <div class="mt-4 flex items-baseline justify-center gap-1">
+                                    <span class="font-display text-[clamp(2.5rem,5vw,3.5rem)] font-extrabold text-ink-text leading-none tracking-[-0.03em]">
+                                        ${plan.price}
                                     </span>
-                                    <span class="text-font/60 text-sm">/month</span>
+                                    <span class="text-ink-muted text-sm">/month</span>
                                 </div>
                             </div>
 
-                            <ul class="space-y-3 flex-1">
+                            <ul class="space-y-3.5 flex-1">
                                 {plan.perkList.map((perk) => (
                                     <li
                                         class:list={[
                                             'flex items-start gap-3 text-sm',
-                                            perk.isActive ? 'text-font/90' : 'text-font/40',
+                                            perk.isActive ? 'text-ink-text/90' : 'text-ink-dim',
                                         ]}
                                     >
                                         <span
                                             class:list={[
                                                 'flex-shrink-0 h-5 w-5 rounded-full flex items-center justify-center text-[0.6rem] mt-0.5',
                                                 perk.isActive
-                                                    ? 'bg-emerald-500/15 text-emerald-300 border border-emerald-500/40'
-                                                    : 'bg-white/5 text-font/30 border border-white/10',
+                                                    ? 'bg-calm/15 text-calm border border-calm/40'
+                                                    : 'bg-surface text-ink-dim border border-border',
                                             ]}
                                         >
                                             <i
@@ -88,7 +87,7 @@ const plans = priceOptions as PricingPlan[];
                                                 aria-hidden="true"
                                             ></i>
                                         </span>
-                                        <span class:list={[perk.isActive ? '' : 'line-through decoration-font/20']}>
+                                        <span class:list={[perk.isActive ? '' : 'line-through decoration-ink-dim/50']}>
                                             {perk.name}
                                         </span>
                                     </li>
@@ -97,7 +96,7 @@ const plans = priceOptions as PricingPlan[];
 
                             <Button
                                 label={plan.buttonLabel}
-                                variant={featured ? 'gradient' : 'outline'}
+                                variant={featured ? 'cta' : 'outline'}
                                 size="md"
                                 isFullWidth
                                 as="a"
@@ -108,6 +107,13 @@ const plans = priceOptions as PricingPlan[];
                     </div>
                 );
             })}
+        </div>
+
+        <div class="mt-10 text-center" data-reveal>
+            <Link href="#contact-section" variant="default" class="inline-flex items-center gap-2 text-sm text-ink-muted hover:text-calm">
+                <span>Compare all features</span>
+                <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i>
+            </Link>
         </div>
     </Container>
 </Section>

@@ -1,20 +1,27 @@
 ---
 interface Props {
-    color?: 'primary' | 'accent' | 'muted';
-    prefix?: string;
+    color?: 'calm' | 'alert' | 'muted';
+    number?: string | number;
+    label?: string;
     class?: string;
 }
 
-const { color = 'primary', prefix, class: className = '' } = Astro.props;
+const { color = 'calm', number, label, class: className = '' } = Astro.props;
 
 const colorClasses: Record<string, string> = {
-    primary: 'text-primary',
-    accent: 'text-accent',
-    muted: 'text-font/60',
+    calm: 'text-calm',
+    alert: 'text-alert',
+    muted: 'text-ink-muted',
 };
 ---
 
-<p class:list={['text-mono text-xs sm:text-sm uppercase tracking-[0.18em] font-medium mb-2', colorClasses[color], className]}>
-    {prefix && <span class="opacity-60 mr-2">{prefix}</span>}
-    <slot />
-</p>
+<div class:list={['inline-flex items-center gap-3 text-mono text-[0.7rem] sm:text-xs uppercase tracking-[0.18em] font-medium', colorClasses[color], className]}>
+    {number !== undefined && (
+        <span class="inline-flex items-center gap-2">
+            <span class="block w-6 h-px bg-current opacity-50" aria-hidden="true"></span>
+            <span class="opacity-80">{number}</span>
+        </span>
+    )}
+    {label && <span class="opacity-90"><slot /></span>}
+    {!label && number === undefined && <slot />}
+</div>

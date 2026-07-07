@@ -5,20 +5,21 @@ import Container from '~/components/ui/Container.astro';
 import Eyebrow from '~/components/ui/Eyebrow.astro';
 import FormField from '~/components/ui/FormField.astro';
 import Heading from '~/components/ui/Heading.astro';
-import Icon from '~/components/ui/Icon.astro';
+import NextSteps from '~/components/ui/NextSteps.astro';
 import Section from '~/components/ui/Section.astro';
 import Text from '~/components/ui/Text.astro';
+import ContactCard from './ContactCard.astro';
 import contactData from '~/data/contacts.json';
 import type { ContactData } from '~/types';
 
 const contact = contactData as ContactData;
 ---
 
-<Section id="contact-section" background="none" divider="both" separator>
+<Section id="contact-section" background="glow-center">
     <Container>
-        <div class="max-w-2xl mb-12" data-reveal>
-            <Eyebrow prefix="05 /">Talk to us</Eyebrow>
-            <Heading level={2} size="h1" class="mt-3">
+        <div class="max-w-2xl mb-14" data-reveal>
+            <Eyebrow color="alert" number="06">Talk to us</Eyebrow>
+            <Heading level={2} size="h1" class="mt-4">
                 Let's map your
                 <span class="text-gradient">attack surface</span>.
             </Heading>
@@ -28,21 +29,20 @@ const contact = contactData as ContactData;
             </Text>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
-            <Card tone="strong" class="lg:col-span-3" data-reveal>
-                <form name="contact" method="POST" data-netlify="true" class="space-y-4">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <!-- Form (8 cols) -->
+            <Card tone="subtle-strong" class="lg:col-span-8 flex flex-col" data-reveal>
+                <form name="contact" method="POST" data-netlify="true" class="flex flex-col flex-1 gap-5 min-h-0">
                     <input type="hidden" name="form-name" value="contact" />
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <FormField id="name" name="name" label="Name" required autocomplete="name" />
-                        <FormField
-                            id="email"
-                            name="email"
-                            type="email"
-                            label="Email"
-                            required
-                            autocomplete="email"
-                        />
-                    </div>
+                    <FormField id="name" name="name" label="Name" required autocomplete="name" />
+                    <FormField
+                        id="email"
+                        name="email"
+                        type="email"
+                        label="Email"
+                        required
+                        autocomplete="email"
+                    />
                     <FormField
                         id="phone"
                         name="phone"
@@ -50,85 +50,54 @@ const contact = contactData as ContactData;
                         label="Phone (optional)"
                         autocomplete="tel"
                     />
-                    <div class="flex flex-col gap-1.5">
-                        <label
-                            for="message"
-                            class="text-mono text-xs uppercase tracking-wider text-font/70 font-medium"
-                        >
-                            Message <span class="text-primary">*</span>
-                        </label>
-                        <textarea
-                            id="message"
-                            name="message"
-                            rows="6"
-                            required
-                            placeholder="Tell us about your environment and what you're trying to protect..."
-                            class="w-full bg-surface/80 border border-primary/20 rounded px-3 py-2.5 text-font placeholder:text-font/40 focus:border-primary focus:ring-1 focus:ring-primary/40 focus:outline-none transition-colors duration-200 resize-y form-textarea"
-                        ></textarea>
-                    </div>
-                    <div class="flex items-center justify-between gap-4 pt-2">
-                        <p class="text-mono text-xs text-font/50">
+                    <FormField
+                        id="message"
+                        name="message"
+                        label="Message"
+                        multiline
+                        grow
+                        required
+                        rows={4}
+                        placeholder="Tell us about your environment and what you're trying to protect..."
+                    />
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-2 mt-auto">
+                        <p class="text-mono text-[0.7rem] uppercase tracking-[0.18em] text-ink-dim">
                             We respect your privacy. No spam, ever.
                         </p>
                         <Button
                             type="submit"
                             label="Send message"
-                            variant="primary"
+                            variant="cta"
                             iconRight="fa-solid fa-paper-plane"
                         />
                     </div>
                 </form>
             </Card>
 
-            <div class="lg:col-span-2 space-y-4" data-reveal data-reveal-delay="150">
-                <Card class="space-y-2">
-                    <div class="flex items-center gap-3 text-primary">
-                        <Icon name="fa-location-dot" size="lg" />
-                        <p class="text-mono text-xs uppercase tracking-wider font-medium">Address</p>
-                    </div>
-                    <Text size="sm">{contact.address.physical.street}</Text>
-                    <Text size="sm">
-                        {contact.address.physical.city}, {contact.address.physical.state} {contact.address.physical.zip}
-                    </Text>
+            <!-- Sidebar: Next steps + contact info (4 cols) -->
+            <div class="lg:col-span-4 flex flex-col gap-5" data-reveal data-reveal-delay="150">
+                <Card tone="subtle-strong" class="flex-1">
+                    <NextSteps />
                 </Card>
 
-                <Card class="space-y-1">
-                    <div class="flex items-center gap-3 text-primary">
-                        <Icon name="fa-phone" size="lg" />
-                        <p class="text-mono text-xs uppercase tracking-wider font-medium">Phone</p>
-                    </div>
-                    <a
-                        href={`tel:${contact.phone}`}
-                        class="text-font hover:text-primary transition-colors text-lg font-display font-semibold"
-                    >
-                        {contact.phone}
-                    </a>
-                </Card>
-
-                <Card class="space-y-1">
-                    <div class="flex items-center gap-3 text-primary">
-                        <Icon name="fa-regular fa-envelope" size="lg" />
-                        <p class="text-mono text-xs uppercase tracking-wider font-medium">Email</p>
-                    </div>
-                    <a
-                        href={`mailto:${contact.email}`}
-                        class="text-font hover:text-primary transition-colors text-lg font-display font-semibold break-all"
-                    >
-                        {contact.email}
-                    </a>
-                </Card>
-
-                <Card tone="strong" class="space-y-3">
-                    <div class="flex items-center gap-3 text-primary">
-                        <Icon name="fa-bolt" size="lg" />
-                        <p class="text-mono text-xs uppercase tracking-wider font-medium">Response time</p>
-                    </div>
-                    <Text size="sm" color="muted">
-                        For active security incidents, call our 24/7 hotline.
-                        Average email response: under
-                        <span class="text-primary font-medium"> 4 hours</span>.
-                    </Text>
-                </Card>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3">
+                    <ContactCard icon="fa-phone" label="24/7 hotline">
+                        <a
+                            href={`tel:${contact.phone}`}
+                            class="text-ink-text hover:text-alert transition-colors"
+                        >
+                            {contact.phone}
+                        </a>
+                    </ContactCard>
+                    <ContactCard icon="fa-regular fa-envelope" label="Email">
+                        <a
+                            href={`mailto:${contact.email}`}
+                            class="text-ink-text hover:text-calm transition-colors break-all"
+                        >
+                            {contact.email}
+                        </a>
+                    </ContactCard>
+                </div>
             </div>
         </div>
     </Container>

@@ -2,18 +2,19 @@
 import Card from '~/components/ui/Card.astro';
 import Container from '~/components/ui/Container.astro';
 import Icon from '~/components/ui/Icon.astro';
+import Section from '~/components/ui/Section.astro';
 import Text from '~/components/ui/Text.astro';
 
+const heroStat = {
+    value: 12.84,
+    suffix: 'M+',
+    prefix: '',
+    decimals: 2,
+    label: 'Threats blocked',
+    sub: 'across all customer environments, last 90 days',
+};
+
 const stats = [
-    {
-        value: 12,
-        suffix: 'M+',
-        prefix: '',
-        decimals: 0,
-        label: 'Threats blocked',
-        sub: 'last 90 days',
-        icon: 'fa-shield-halved',
-    },
     {
         value: 500,
         suffix: '+',
@@ -29,58 +30,83 @@ const stats = [
         prefix: '',
         decimals: 2,
         label: 'Platform uptime',
-        sub: '12-month rolling',
+        sub: '12-month rolling average',
         icon: 'fa-signal',
     },
     {
         value: 4,
-        suffix: '+',
-        prefix: '',
+        suffix: ' min',
+        prefix: '<',
         decimals: 0,
-        label: 'Years in operation',
-        sub: 'since 2020',
+        label: 'Avg. response time',
+        sub: '24/7 incident response team',
         icon: 'fa-bolt',
     },
 ];
 ---
 
-<section class="relative py-16 sm:py-20 divider-bottom" aria-label="Cybershield by the numbers">
-    <Container class="relative">
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+<Section background="none" aria-label="Cybershield by the numbers">
+    <Container>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5">
+            <!-- Hero stat (left, larger) -->
+            <Card
+                tone="subtle-strong"
+                class="flex flex-col gap-5 lg:row-span-2 lg:p-10"
+                data-reveal
+            >
+                <div class="flex items-center justify-between">
+                    <span class="inline-flex h-10 w-10 items-center justify-center rounded-md bg-alert/10 border border-alert/30 text-alert">
+                        <Icon name="fa-shield-halved" size="md" />
+                    </span>
+                    <span class="text-mono text-[0.7rem] text-ink-dim uppercase tracking-[0.18em]">
+                        Threats · 90d
+                    </span>
+                </div>
+                <div
+                    class="font-display text-[clamp(3rem,7vw,5rem)] font-extrabold text-ink-text leading-[0.95] tracking-[-0.03em] tabular-nums"
+                    data-count-up={heroStat.value}
+                    data-count-suffix={heroStat.suffix}
+                    data-count-prefix={heroStat.prefix}
+                    data-count-decimals={heroStat.decimals}
+                >
+                    0
+                </div>
+                <div>
+                    <p class="font-display font-semibold text-lg text-ink-text">{heroStat.label}</p>
+                    <Text size="sm" color="muted" class="mt-1">{heroStat.sub}</Text>
+                </div>
+            </Card>
+
+            <!-- Three smaller stats stacked on the right -->
             {stats.map((stat, i) => (
                 <Card
-                    hover
-                    class="flex flex-col gap-2 sm:gap-3"
+                    tone="subtle"
+                    class="flex items-center gap-5"
                     data-reveal
-                    data-reveal-delay={i * 80}
+                    data-reveal-delay={100 + i * 80}
                 >
-                    <div class="flex items-center justify-between">
-                        <span class="inline-flex h-9 w-9 items-center justify-center rounded border border-primary/30 bg-primary/5 text-primary">
-                            <Icon name={stat.icon} />
+                    <span class="flex-shrink-0 inline-flex h-11 w-11 items-center justify-center rounded-md bg-surface border border-border text-calm">
+                        <Icon name={stat.icon} />
+                    </span>
+                    <div class="flex-1 min-w-0 flex items-baseline gap-4 flex-wrap">
+                        <span
+                            class="font-display text-2xl sm:text-3xl font-bold text-ink-text tracking-tight tabular-nums"
+                            data-count-up={stat.value}
+                            data-count-suffix={stat.suffix}
+                            data-count-prefix={stat.prefix}
+                            data-count-decimals={stat.decimals}
+                        >
+                            0
                         </span>
-                        <span class="text-mono text-[0.65rem] text-font/40 uppercase tracking-wider">
-                            /{String(i + 1).padStart(2, '0')}
-                        </span>
-                    </div>
-                    <div
-                        class="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gradient leading-none"
-                        data-count-up={stat.value}
-                        data-count-suffix={stat.suffix}
-                        data-count-prefix={stat.prefix}
-                        data-count-decimals={stat.decimals}
-                    >
-                        0
-                    </div>
-                    <div>
-                        <p class="font-display font-semibold text-sm sm:text-base text-font">
-                            {stat.label}
-                        </p>
-                        <Text size="sm" color="muted" class="text-font/50">
-                            {stat.sub}
-                        </Text>
+                        <div class="min-w-0">
+                            <p class="font-display font-semibold text-sm text-ink-text leading-tight">
+                                {stat.label}
+                            </p>
+                            <Text size="sm" color="muted" class="mt-0.5 text-ink-dim">{stat.sub}</Text>
+                        </div>
                     </div>
                 </Card>
             ))}
         </div>
     </Container>
-</section>
+</Section>

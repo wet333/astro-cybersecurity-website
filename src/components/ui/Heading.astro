@@ -1,9 +1,11 @@
 ---
+type HeadingTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+
 interface Props {
     level?: 1 | 2 | 3 | 4 | 5 | 6;
     size?: 'display' | 'h1' | 'h2' | 'h3' | 'h4' | 'eyebrow';
-    color?: 'default' | 'primary' | 'accent' | 'muted' | 'gradient';
-    as?: string;
+    color?: 'default' | 'calm' | 'alert' | 'muted' | 'gradient';
+    as?: HeadingTag;
     class?: string;
 }
 
@@ -13,9 +15,8 @@ const {
     color = 'default',
     as: Tag,
     class: className = '',
-} = Astro.props;
+}: Props = Astro.props;
 
-// Default size by level
 const defaultSizeMap: Record<number, string> = {
     1: 'h1',
     2: 'h2',
@@ -26,22 +27,22 @@ const defaultSizeMap: Record<number, string> = {
 };
 
 const effectiveSize = size ?? defaultSizeMap[level];
-const ResolvedTag = (Tag ?? `h${level}`) as keyof HTMLElementTagNameMap;
+const ResolvedTag: HeadingTag = Tag ?? (`h${level}` as HeadingTag);
 
 const sizeClasses: Record<string, string> = {
-    display: 'text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-tight',
-    h1: 'text-3xl sm:text-4xl md:text-5xl font-bold leading-tight tracking-tight',
-    h2: 'text-2xl sm:text-3xl md:text-4xl font-bold leading-tight',
-    h3: 'text-xl sm:text-2xl font-semibold leading-snug',
-    h4: 'text-lg sm:text-xl font-semibold leading-snug',
+    display: 'text-[clamp(2.5rem,5vw+1rem,4.5rem)] font-extrabold leading-[1.05] tracking-[-0.025em]',
+    h1: 'text-[clamp(2rem,3vw+1rem,3rem)] font-bold leading-[1.1] tracking-[-0.02em]',
+    h2: 'text-[clamp(1.5rem,2vw+0.75rem,2.25rem)] font-bold leading-[1.15] tracking-[-0.02em]',
+    h3: 'text-xl sm:text-2xl font-semibold leading-snug tracking-[-0.01em]',
+    h4: 'text-base sm:text-lg font-semibold leading-snug',
     eyebrow: 'text-xs sm:text-sm font-medium uppercase tracking-[0.18em] text-mono',
 };
 
 const colorClasses: Record<string, string> = {
-    default: 'text-font',
-    primary: 'text-primary',
-    accent: 'text-accent',
-    muted: 'text-font/70',
+    default: 'text-ink-text',
+    calm: 'text-calm',
+    alert: 'text-alert',
+    muted: 'text-ink-muted',
     gradient: 'text-gradient',
 };
 ---

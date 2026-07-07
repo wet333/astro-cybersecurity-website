@@ -1,11 +1,11 @@
 ---
 interface Props {
     size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
-    as?: string;
+    as?: 'div' | 'section' | 'article' | 'main' | 'aside' | 'header' | 'footer' | 'nav';
     class?: string;
 }
 
-const { size = 'lg', as: Tag = 'div', class: className = '' } = Astro.props;
+const { size = 'lg', as: Tag = 'div', class: className = '' }: Props = Astro.props;
 
 const sizeMap: Record<string, string> = {
     sm: 'max-w-3xl',

@@ -1,21 +1,18 @@
 ---
 interface Props {
     href: string;
-    variant?: 'desktop' | 'mobile';
     class?: string;
 }
 
-const { href, variant = 'desktop', class: className = '' } = Astro.props;
-
-const baseClasses =
-    'relative text-mono uppercase tracking-wider transition-colors duration-200 hover:text-primary focus:text-primary';
-
-const variantClasses: Record<string, string> = {
-    desktop: 'text-sm',
-    mobile: 'text-2xl font-display font-semibold tracking-tight text-font hover:text-primary',
-};
+const { href, class: className = '' } = Astro.props;
 ---
 
-<a href={href} class:list={[baseClasses, variantClasses[variant], className]}>
+<a
+    href={href}
+    class:list={[
+        'relative text-mono text-sm uppercase tracking-wider transition-colors duration-200 hover:text-calm focus:text-calm',
+        className,
+    ]}
+>
     <slot />
 </a>

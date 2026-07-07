@@ -9,32 +9,39 @@ import Text from '~/components/ui/Text.astro';
 import aboutPageInfo from '~/data/aboutUsData.json';
 ---
 
-<Section id="about-section" background="none" divider="top" separator>
+<Section id="about-section" tone="tinted-calm" background="none">
     <Container>
-        <div class="max-w-2xl mb-12" data-reveal>
-            <Eyebrow prefix="01 /">About Cybershield</Eyebrow>
-            <Heading level={2} size="h1" class="mt-3">
-                A team that lives at the
-                <span class="text-gradient">front line</span>
-                of digital defense.
+        <div class="max-w-2xl mb-14" data-reveal>
+            <Eyebrow color="calm" number="01">About Cybershield</Eyebrow>
+            <Heading level={2} size="h1" class="mt-4">
+                A team that's been on
+                <span class="text-gradient">the other side</span>.
             </Heading>
         </div>
 
         <Grid cols={2} gap="lg" class="items-stretch">
             <div data-reveal data-reveal-delay="100">
-                <div class="relative h-full min-h-[320px] overflow-hidden rounded">
+                <div class="relative h-full min-h-[360px] overflow-hidden rounded-card border border-border group">
                     <img
                         src="/images/company-team.jpg"
                         alt="The Cybershield team at work"
-                        class="absolute inset-0 h-full w-full object-cover"
+                        class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                         loading="lazy"
                     />
                     <div
-                        class="absolute inset-0"
-                        style="background: linear-gradient(135deg, rgba(120,187,237,0.18) 0%, rgba(184,120,237,0.12) 50%, rgba(8,10,16,0.55) 100%);"
+                        class="absolute inset-0 bg-image-fade"
                         aria-hidden="true"
                     ></div>
-                    <div class="absolute inset-0 border border-primary/25 rounded" aria-hidden="true"></div>
+                    <!-- Decorative play overlay -->
+                    <div class="absolute bottom-5 left-5 right-5 flex items-center gap-3">
+                        <span class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-ink/70 border border-border backdrop-blur-glass text-ink-text group-hover:border-calm/60 group-hover:text-calm transition-colors">
+                            <i class="fa-solid fa-play text-xs translate-x-px" aria-hidden="true"></i>
+                        </span>
+                        <div>
+                            <p class="text-mono text-[0.65rem] uppercase tracking-[0.18em] text-ink-muted">Watch</p>
+                            <p class="text-sm text-ink-text font-medium">A day with the team</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -42,15 +49,16 @@ import aboutPageInfo from '~/data/aboutUsData.json';
                 <Text size="lead" color="muted">
                     {aboutPageInfo.description}
                 </Text>
-                <Card tone="strong" class="relative">
+
+                <Card tone="subtle-strong" class="relative">
                     <i
-                        class="fa-solid fa-quote-left absolute top-4 right-4 text-primary/30 text-3xl"
+                        class="fa-solid fa-quote-left absolute top-4 right-4 text-alert/30 text-2xl"
                         aria-hidden="true"
                     ></i>
-                    <Text size="lg" class="italic text-font/90 leading-relaxed">
-                        {aboutPageInfo.quote}
+                    <Text size="lg" class="italic text-ink-text/90 leading-relaxed">
+                        Most of our work is invisible. That's the point.
                     </Text>
-                    <p class="mt-4 text-mono text-xs uppercase tracking-wider text-primary">
+                    <p class="mt-4 text-mono text-[0.7rem] uppercase tracking-[0.18em] text-alert">
                         — {aboutPageInfo.author}
                     </p>
                 </Card>

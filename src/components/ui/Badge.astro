@@ -1,6 +1,6 @@
 ---
 interface Props {
-    variant?: 'default' | 'primary' | 'accent' | 'success' | 'muted' | 'solid';
+    variant?: 'default' | 'calm' | 'alert' | 'success' | 'muted' | 'solid';
     size?: 'sm' | 'md';
     glow?: boolean;
     class?: string;
@@ -9,12 +9,12 @@ interface Props {
 const { variant = 'default', size = 'sm', glow = false, class: className = '' } = Astro.props;
 
 const variantClasses: Record<string, string> = {
-    default: 'bg-surface-light/60 text-font/80 border-primary/20',
-    primary: 'bg-primary/10 text-primary border-primary/40',
-    accent: 'bg-accent/10 text-accent border-accent/40',
-    success: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/40',
-    muted: 'bg-white/5 text-font/60 border-white/10',
-    solid: 'bg-gradient-to-r from-primary to-accent text-white border-transparent font-semibold',
+    default: 'bg-surface-raised text-ink-muted border-border',
+    calm: 'bg-calm/10 text-calm border-calm/30',
+    alert: 'bg-alert/10 text-alert border-alert/30',
+    success: 'bg-alert/10 text-alert-soft border-alert/30',
+    muted: 'bg-surface-raised text-ink-dim border-border',
+    solid: 'bg-alert text-white border-transparent font-semibold',
 };
 
 const sizeClasses: Record<string, string> = {
@@ -22,7 +22,7 @@ const sizeClasses: Record<string, string> = {
     md: 'text-xs px-3 py-1.5',
 };
 
-const glowClasses = glow ? 'shadow-glow ring-1 ring-white/20' : '';
+const glowClasses = glow ? 'shadow-glow-alert-md ring-1 ring-white/15' : '';
 ---
 
 <span

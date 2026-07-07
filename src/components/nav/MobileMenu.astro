@@ -1,5 +1,5 @@
 ---
-import NavLink from './NavLink.astro';
+import Logo from '../ui/Logo.astro';
 
 interface NavItem {
     label: string;
@@ -19,42 +19,50 @@ const { items, class: className = '' } = Astro.props;
     data-mobile-menu
     class:list={[
         'fixed inset-0 z-40 lg:hidden',
+        'backdrop-blur-glass bg-ink/95',
         'pointer-events-none opacity-0',
         'transition-opacity duration-300',
         className,
     ]}
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="mobile-menu-heading"
     aria-hidden="true"
 >
-    <!-- Backdrop -->
-    <div
-        data-mobile-menu-backdrop
-        class="absolute inset-0 bg-bg-color/80 backdrop-blur-glass"
-    ></div>
+    <div class="flex items-center justify-between h-16 sm:h-20 px-6 sm:px-8 border-b border-border">
+        <Logo size="sm" />
+        <button
+            type="button"
+            data-mobile-menu-close
+            aria-label="Close menu"
+            class="inline-flex items-center justify-center h-10 w-10 rounded-md text-ink-text hover:text-calm hover:bg-surface-raised transition-colors"
+        >
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+    </div>
 
-    <!-- Panel -->
-    <div
-        data-mobile-menu-panel
-        class="absolute right-0 top-0 h-full w-full max-w-sm glass-strong border-l border-primary/30 shadow-glow translate-x-full transition-transform duration-300 ease-out"
+    <h2 id="mobile-menu-heading" class="sr-only">Menu</h2>
+
+    <nav
+        class="flex flex-col items-center justify-center gap-2 px-6"
+        style="min-height: calc(100vh - 5rem)"
+        aria-label="Mobile primary"
     >
-        <div class="flex flex-col h-full p-6 pt-24">
-            <nav class="flex flex-col gap-1" aria-label="Mobile primary">
-                {items.map((item) => (
-                    <a
-                        href={item.href}
-                        data-mobile-menu-link
-                        class="block py-3 px-4 rounded text-font hover:bg-primary/10 hover:text-primary transition-colors text-mono uppercase tracking-wider text-sm"
-                    >
-                        {item.label}
-                    </a>
-                ))}
-            </nav>
+        {items.map((item) => (
+            <a
+                href={item.href}
+                data-mobile-menu-link
+                class="block py-4 text-2xl font-display font-semibold text-ink-text hover:text-calm transition-colors"
+            >
+                {item.label}
+            </a>
+        ))}
+    </nav>
 
-            <div class="mt-auto pt-6 border-t border-primary/20">
-                <p class="text-mono text-xs uppercase tracking-wider text-font/50 mb-3">
-                    Direct contact
-                </p>
-                <slot name="footer" />
-            </div>
-        </div>
+    <div class="absolute bottom-0 left-0 right-0 px-6 sm:px-8 py-6 bg-ink/80 border-t border-border">
+        <p class="text-mono text-[0.7rem] uppercase tracking-[0.18em] text-ink-dim mb-3">
+            Direct contact
+        </p>
+        <slot name="footer" />
     </div>
 </div>

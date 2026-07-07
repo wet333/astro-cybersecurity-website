@@ -8,8 +8,8 @@ interface Props {
 const { size = 'md', showText = true, class: className = '' } = Astro.props;
 
 const sizeMap: Record<string, { box: string; text: string }> = {
-    sm: { box: 'h-7', text: 'text-lg' },
-    md: { box: 'h-9', text: 'text-2xl' },
+    sm: { box: 'h-7', text: 'text-base' },
+    md: { box: 'h-9', text: 'text-xl' },
     lg: { box: 'h-12', text: 'text-3xl' },
 };
 const s = sizeMap[size];
@@ -17,12 +17,12 @@ const s = sizeMap[size];
 
 <a href="/" class:list={['inline-flex items-center gap-2.5 group', className]} aria-label="Cybershield home">
     <span class:list={['relative inline-flex items-center justify-center', s.box]}>
-        <span class="absolute inset-0 rounded-md bg-gradient-to-br from-primary/30 to-accent/30 blur-md group-hover:blur-lg transition-all"></span>
-        <span class="relative inline-flex items-center justify-center h-full aspect-square rounded-md bg-gradient-to-br from-primary to-accent">
-            <i class="fa-solid fa-shield-halved text-bg-color text-base" aria-hidden="true"></i>
+        <span class="absolute inset-0 rounded-md bg-alert/30 blur-md opacity-60 group-hover:opacity-90 transition-opacity"></span>
+        <span class="relative inline-flex items-center justify-center h-full aspect-square rounded-md bg-gradient-to-br from-calm to-alert">
+            <i class="fa-solid fa-shield-halved text-ink text-sm" aria-hidden="true"></i>
         </span>
     </span>
     {showText && (
-        <span class:list={['font-display font-extrabold text-gradient tracking-tight', s.text]}>Cybershield</span>
+        <span class:list={['font-display font-extrabold text-ink-text tracking-tight', s.text]}>Cybershield</span>
     )}
 </a>

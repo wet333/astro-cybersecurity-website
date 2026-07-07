@@ -1,0 +1,160 @@
+---
+interface Props {
+    class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<div
+    class:list={['relative w-full max-w-[520px] aspect-square mx-auto', className]}
+    aria-hidden="true"
+>
+    <!-- Alert blip callout: "Alert · 4m 12s ago" -->
+    <div
+        class="radar-alert-callout hidden lg:flex absolute z-10 items-center gap-1.5 px-2 py-1 rounded bg-surface-raised/95 border border-alert/40 text-mono text-[0.6rem] uppercase tracking-[0.14em] text-alert whitespace-nowrap shadow-glow-alert-sm backdrop-blur-xs"
+        style="top: 57%; left: 60%; transform: translate(-100%, -50%);"
+    >
+        <span class="block w-1 h-1 rounded-full bg-alert animate-pulse-dot" aria-hidden="true"></span>
+        <span class="font-semibold">Alert</span>
+        <span class="text-alert/60">·</span>
+        <span class="text-alert-soft tabular-nums">4m 12s ago</span>
+    </div>
+    <svg
+        viewBox="0 0 520 520"
+        class="absolute inset-0 w-full h-full"
+        role="presentation"
+    >
+        <defs>
+            <radialGradient id="radar-sweep-grad" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="rgba(126, 182, 232, 0.30)" />
+                <stop offset="60%" stop-color="rgba(126, 182, 232, 0.08)" />
+                <stop offset="100%" stop-color="rgba(126, 182, 232, 0)" />
+            </radialGradient>
+            <linearGradient id="radar-arm-grad" x1="50%" y1="50%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="rgba(126, 182, 232, 0.65)" />
+                <stop offset="100%" stop-color="rgba(126, 182, 232, 0)" />
+            </linearGradient>
+        </defs>
+
+        <!-- Outer thin ring -->
+        <circle cx="260" cy="260" r="240" fill="none" stroke="rgba(42, 51, 68, 1)" stroke-width="1" />
+
+        <!-- Inner concentric reference rings -->
+        <circle cx="260" cy="260" r="180" fill="none" stroke="rgba(42, 51, 68, 0.8)" stroke-width="1" stroke-dasharray="2 4" />
+        <circle cx="260" cy="260" r="120" fill="none" stroke="rgba(42, 51, 68, 0.6)" stroke-width="1" stroke-dasharray="2 4" />
+        <circle cx="260" cy="260" r="60"  fill="none" stroke="rgba(42, 51, 68, 0.6)" stroke-width="1" stroke-dasharray="2 4" />
+
+        <!-- Crosshair lines -->
+        <line x1="260" y1="20"  x2="260" y2="40"  stroke="rgba(42, 51, 68, 1)" stroke-width="1" />
+        <line x1="260" y1="480" x2="260" y2="500" stroke="rgba(42, 51, 68, 1)" stroke-width="1" />
+        <line x1="20"  y1="260" x2="40"  y2="260" stroke="rgba(42, 51, 68, 1)" stroke-width="1" />
+        <line x1="480" y1="260" x2="500" y2="260" stroke="rgba(42, 51, 68, 1)" stroke-width="1" />
+
+        <!-- Sweep group (rotates) -->
+        <g class="radar-sweep-group" style="transform-origin: 260px 260px;">
+            <circle cx="260" cy="260" r="240" fill="url(#radar-sweep-grad)" />
+            <line x1="260" y1="260" x2="500" y2="260" stroke="url(#radar-arm-grad)" stroke-width="1.5" stroke-linecap="round" />
+        </g>
+
+        <!-- Contact blips: a calm one and a single alert one (the "active threat") -->
+        <g class="radar-blip">
+            <circle cx="180" cy="140" r="4" fill="#7eb6e8" />
+            <circle cx="180" cy="140" r="10" fill="none" stroke="#7eb6e8" stroke-width="1" opacity="0.5" />
+        </g>
+        <g class="radar-blip" style="animation-delay: 1.2s;">
+            <circle cx="370" cy="190" r="4" fill="#7eb6e8" />
+            <circle cx="370" cy="190" r="10" fill="none" stroke="#7eb6e8" stroke-width="1" opacity="0.5" />
+        </g>
+        <g class="radar-blip" style="animation-delay: 2.4s;">
+            <circle cx="320" cy="370" r="4" fill="#7eb6e8" />
+            <circle cx="320" cy="370" r="10" fill="none" stroke="#7eb6e8" stroke-width="1" opacity="0.5" />
+        </g>
+        <g class="radar-blip" style="animation-delay: 0.6s;">
+            <circle cx="140" cy="350" r="4" fill="#7eb6e8" />
+            <circle cx="140" cy="350" r="10" fill="none" stroke="#7eb6e8" stroke-width="1" opacity="0.5" />
+        </g>
+        <!-- Connector line from callout to alert blip -->
+        <line
+            x1="315" y1="295" x2="378" y2="295"
+            stroke="#ff7a45"
+            stroke-width="1"
+            opacity="0.45"
+            stroke-dasharray="2 3"
+            stroke-linecap="round"
+        />
+        <!-- Alert blip — the one that matters -->
+        <g class="radar-blip-alert">
+            <circle cx="395" cy="295" r="5" fill="#ff7a45" />
+            <circle cx="395" cy="295" r="14" fill="none" stroke="#ff7a45" stroke-width="1" opacity="0.6" />
+        </g>
+        <!-- Alert ping ring (outward pulse) -->
+        <g class="radar-alert-ping">
+            <circle cx="395" cy="295" r="14" fill="none" stroke="#ff7a45" stroke-width="1" opacity="0.6" />
+        </g>
+
+        <!-- Center crosshair -->
+        <g>
+            <circle cx="260" cy="260" r="3" fill="#7eb6e8" />
+            <line x1="252" y1="260" x2="248" y2="260" stroke="#7eb6e8" stroke-width="1" />
+            <line x1="268" y1="260" x2="272" y2="260" stroke="#7eb6e8" stroke-width="1" />
+            <line x1="260" y1="252" x2="260" y2="248" stroke="#7eb6e8" stroke-width="1" />
+            <line x1="260" y1="268" x2="260" y2="272" stroke="#7eb6e8" stroke-width="1" />
+        </g>
+    </svg>
+
+    <!-- Coordinate labels (decorative) -->
+    <span class="absolute top-2 left-1/2 -translate-x-1/2 text-mono text-[0.6rem] uppercase tracking-wider text-ink-dim">N</span>
+    <span class="absolute bottom-2 left-1/2 -translate-x-1/2 text-mono text-[0.6rem] uppercase tracking-wider text-ink-dim">S</span>
+    <span class="absolute left-2 top-1/2 -translate-y-1/2 text-mono text-[0.6rem] uppercase tracking-wider text-ink-dim">W</span>
+    <span class="absolute right-2 top-1/2 -translate-y-1/2 text-mono text-[0.6rem] uppercase tracking-wider text-ink-dim">E</span>
+</div>
+
+<style>
+    .radar-sweep-group {
+        animation: radar-sweep 6s linear infinite;
+    }
+
+    .radar-blip {
+        animation: blip-fade 4s ease-in-out infinite;
+    }
+
+    .radar-blip-alert {
+        animation: alert-pulse 2s ease-in-out infinite;
+        transform-origin: 395px 295px;
+    }
+
+    .radar-alert-ping {
+        animation: alert-ping 2.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+        transform-origin: 395px 295px;
+    }
+
+    @keyframes radar-sweep {
+        from { transform: rotate(0deg); }
+        to   { transform: rotate(360deg); }
+    }
+
+    @keyframes blip-fade {
+        0%, 100% { opacity: 0.3; }
+        50%      { opacity: 1; }
+    }
+
+    @keyframes alert-pulse {
+        0%, 100% { opacity: 0.7; }
+        50%      { opacity: 1; }
+    }
+
+    @keyframes alert-ping {
+        0%   { transform: scale(0.5); opacity: 0.55; }
+        100% { transform: scale(2.4); opacity: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .radar-sweep-group,
+        .radar-blip,
+        .radar-blip-alert,
+        .radar-alert-ping {
+            animation: none;
+        }
+    }
+</style>

@@ -1,25 +1,25 @@
 ---
 interface Props {
     size?: 'sm' | 'base' | 'lead' | 'lg';
-    color?: 'default' | 'muted' | 'primary' | 'accent';
+    color?: 'default' | 'muted' | 'calm' | 'alert';
     as?: 'p' | 'span' | 'div' | 'small';
     class?: string;
 }
 
-const { size = 'base', color = 'default', as: Tag = 'p', class: className = '' } = Astro.props;
+const { size = 'base', color = 'default', as: Tag = 'p', class: className = '' }: Props = Astro.props;
 
 const sizeClasses: Record<string, string> = {
     sm: 'text-sm leading-relaxed',
     base: 'text-base leading-relaxed',
-    lead: 'text-lg sm:text-xl leading-relaxed text-font/85',
+    lead: 'text-lg sm:text-xl leading-[1.55] text-ink-text/90',
     lg: 'text-lg sm:text-xl leading-relaxed',
 };
 
 const colorClasses: Record<string, string> = {
-    default: 'text-font',
-    muted: 'text-font/70',
-    primary: 'text-primary',
-    accent: 'text-accent',
+    default: 'text-ink-text',
+    muted: 'text-ink-muted',
+    calm: 'text-calm',
+    alert: 'text-alert',
 };
 ---
 

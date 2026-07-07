@@ -1,8 +1,9 @@
 ---
+import Button from '~/components/ui/Button.astro';
 import Container from '~/components/ui/Container.astro';
 import Icon from '~/components/ui/Icon.astro';
-import Link from '~/components/ui/Link.astro';
 import Logo from '~/components/ui/Logo.astro';
+import StatusTicker from '~/components/ui/StatusTicker.astro';
 import Text from '~/components/ui/Text.astro';
 import contactData from '~/data/contacts.json';
 import type { ContactData } from '~/types';
@@ -17,12 +18,12 @@ const linkGroups = [
             { label: 'About', href: '#about-section' },
             { label: 'Services', href: '#services-section' },
             { label: 'Case Studies', href: '#case-studies-section' },
+            { label: 'Plans', href: '#plans-section' },
         ],
     },
     {
         title: 'Company',
         links: [
-            { label: 'Plans', href: '#plans-section' },
             { label: 'FAQ', href: '#faq-section' },
             { label: 'Contact', href: '#contact-section' },
         ],
@@ -30,78 +31,106 @@ const linkGroups = [
 ];
 ---
 
-<footer class="relative border-t border-primary/15">
-    <Container class="relative py-12 sm:py-16">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-            <div class="lg:col-span-1 space-y-4">
-                <Logo size="sm" />
-                <Text size="sm" color="muted" class="max-w-xs">
-                    Proactive cybersecurity for businesses that can't afford to be the next headline.
+<footer class="relative border-t border-border">
+    <!-- Status line -->
+    <div class="border-b border-border bg-surface">
+        <Container class="py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <StatusTicker variant="compact" />
+            <p class="text-mono text-[0.65rem] uppercase tracking-[0.18em] text-ink-dim">
+                Updated 2 min ago
+            </p>
+        </Container>
+    </div>
+
+    <Container class="py-16 sm:py-20">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+            <!-- Brand column -->
+            <div class="lg:col-span-5 space-y-5">
+                <Logo size="md" />
+                <Text size="base" color="muted" class="max-w-sm">
+                    Proactive cybersecurity for businesses that can't afford to be
+                    the next headline. Threat hunting, ethical hacking, and
+                    24/7 incident response.
                 </Text>
-                <div class="flex items-center gap-3">
+                <div class="flex items-center gap-2.5">
                     <a
                         href="#"
                         aria-label="Twitter"
-                        class="h-9 w-9 inline-flex items-center justify-center rounded border border-primary/20 text-font/70 hover:text-primary hover:border-primary/50 hover:shadow-glow-sm transition-all"
+                        class="h-9 w-9 inline-flex items-center justify-center rounded-md border border-border text-ink-muted hover:text-calm hover:border-calm/40 transition-colors"
                     >
                         <Icon name="fa-brands fa-twitter" />
                     </a>
                     <a
                         href="#"
                         aria-label="LinkedIn"
-                        class="h-9 w-9 inline-flex items-center justify-center rounded border border-primary/20 text-font/70 hover:text-primary hover:border-primary/50 hover:shadow-glow-sm transition-all"
+                        class="h-9 w-9 inline-flex items-center justify-center rounded-md border border-border text-ink-muted hover:text-calm hover:border-calm/40 transition-colors"
                     >
                         <Icon name="fa-brands fa-linkedin-in" />
                     </a>
                     <a
                         href="#"
                         aria-label="GitHub"
-                        class="h-9 w-9 inline-flex items-center justify-center rounded border border-primary/20 text-font/70 hover:text-primary hover:border-primary/50 hover:shadow-glow-sm transition-all"
+                        class="h-9 w-9 inline-flex items-center justify-center rounded-md border border-border text-ink-muted hover:text-calm hover:border-calm/40 transition-colors"
                     >
                         <Icon name="fa-brands fa-github" />
                     </a>
                 </div>
             </div>
 
+            <!-- Links columns -->
             {linkGroups.map((group) => (
-                <div class="space-y-4">
-                    <h3 class="text-mono text-xs uppercase tracking-wider text-primary font-medium">
+                <div class="lg:col-span-2 space-y-4">
+                    <h3 class="text-mono text-[0.7rem] uppercase tracking-[0.18em] text-calm font-medium">
                         {group.title}
                     </h3>
                     <ul class="flex flex-col gap-3">
                         {group.links.map((link) => (
                             <li>
-                                <Link href={link.href} variant="footer">
+                                <a
+                                    href={link.href}
+                                    class="text-sm text-ink-muted hover:text-ink-text transition-colors"
+                                >
                                     {link.label}
-                                </Link>
+                                </a>
                             </li>
                         ))}
                     </ul>
                 </div>
             ))}
 
-            <div class="space-y-4">
-                <h3 class="text-mono text-xs uppercase tracking-wider text-primary font-medium">
-                    Contact
-                </h3>
-                <ul class="flex flex-col gap-3 text-font/60">
-                    <li>
-                        <a href={`mailto:${contact.email}`} class="hover:text-primary transition-colors break-all">
-                            {contact.email}
-                        </a>
-                    </li>
-                    <li>
-                        <a href={`tel:${contact.phone}`} class="hover:text-primary transition-colors">
-                            {contact.phone}
-                        </a>
-                    </li>
-                </ul>
+            <!-- CTA card -->
+            <div class="lg:col-span-3">
+                <div class="bg-surface-raised border border-border rounded-card p-6 space-y-4">
+                    <p class="text-mono text-[0.7rem] uppercase tracking-[0.18em] text-alert font-medium">
+                        Active incident?
+                    </p>
+                    <p class="text-sm text-ink-text/85 leading-relaxed">
+                        Call our 24/7 hotline. A security engineer picks up — not a queue.
+                    </p>
+                    <a
+                        href={`tel:${contact.phone}`}
+                        class="block font-display text-lg font-bold text-ink-text hover:text-alert transition-colors"
+                    >
+                        {contact.phone}
+                    </a>
+                    <Button
+                        label="Email instead"
+                        variant="outline"
+                        size="sm"
+                        as="a"
+                        href={`mailto:${contact.email}`}
+                        isFullWidth
+                    />
+                </div>
             </div>
         </div>
 
-        <div class="mt-12 pt-6 border-t border-primary/15 flex flex-col sm:flex-row items-center justify-between gap-3">
-            <p class="text-mono text-xs uppercase tracking-wider text-font/50">
+        <div class="mt-14 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3">
+            <p class="text-mono text-[0.7rem] uppercase tracking-[0.18em] text-ink-dim">
                 © {year} Cybershield. All systems nominal.
+            </p>
+            <p class="text-mono text-[0.7rem] uppercase tracking-[0.18em] text-ink-dim">
+                v2.0 · Rebuilt with intent
             </p>
         </div>
     </Container>

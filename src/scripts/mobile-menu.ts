@@ -3,13 +3,10 @@ export function initMobileMenu(): void {
 
     const trigger = document.querySelector<HTMLButtonElement>('[data-mobile-menu-trigger]');
     const menu = document.querySelector<HTMLElement>('[data-mobile-menu]');
-    const panel = document.querySelector<HTMLElement>('[data-mobile-menu-panel]');
-    const backdrop = document.querySelector<HTMLElement>('[data-mobile-menu-backdrop]');
+    const closeBtn = document.querySelector<HTMLButtonElement>('[data-mobile-menu-close]');
     const links = document.querySelectorAll<HTMLAnchorElement>('[data-mobile-menu-link]');
-    const iconOpen = document.querySelector<HTMLElement>('[data-mobile-menu-icon-open]');
-    const iconClose = document.querySelector<HTMLElement>('[data-mobile-menu-icon-close]');
 
-    if (!trigger || !menu || !panel || !backdrop) return;
+    if (!trigger || !menu) return;
 
     let isOpen = false;
     let previouslyFocused: HTMLElement | null = null;
@@ -28,12 +25,8 @@ export function initMobileMenu(): void {
         menu.classList.remove('pointer-events-none', 'opacity-0');
         menu.classList.add('pointer-events-auto', 'opacity-100');
         menu.setAttribute('aria-hidden', 'false');
-        panel.classList.remove('translate-x-full');
-        panel.classList.add('translate-x-0');
         trigger.setAttribute('aria-expanded', 'true');
         document.body.classList.add('overflow-hidden');
-        iconOpen?.classList.add('hidden');
-        iconClose?.classList.remove('hidden');
 
         const focusables = getFocusable();
         focusables[0]?.focus();
@@ -44,19 +37,18 @@ export function initMobileMenu(): void {
         menu.classList.add('pointer-events-none', 'opacity-0');
         menu.classList.remove('pointer-events-auto', 'opacity-100');
         menu.setAttribute('aria-hidden', 'true');
-        panel.classList.add('translate-x-full');
-        panel.classList.remove('translate-x-0');
         trigger.setAttribute('aria-expanded', 'false');
         document.body.classList.remove('overflow-hidden');
-        iconOpen?.classList.remove('hidden');
-        iconClose?.classList.add('hidden');
 
         previouslyFocused?.focus();
     };
 
     const onTriggerClick = () => (isOpen ? close() : open());
-    const onBackdropClick = () => close();
     const onLinkClick = () => close();
+    const onSurfaceClick = (e: MouseEvent) => {
+        // Close when tapping empty surface (not a child like nav links or the close button).
+        if (e.target === menu) close();
+    };
     const onKeydown = (e: KeyboardEvent) => {
         if (!isOpen) return;
         if (e.key === 'Escape') {
@@ -83,8 +75,9 @@ export function initMobileMenu(): void {
     };
 
     trigger.addEventListener('click', onTriggerClick);
-    backdrop.addEventListener('click', onBackdropClick);
+    closeBtn?.addEventListener('click', close);
     links.forEach((link) => link.addEventListener('click', onLinkClick));
+    menu.addEventListener('click', onSurfaceClick);
     document.addEventListener('keydown', onKeydown);
     window.addEventListener('resize', onResize);
 }

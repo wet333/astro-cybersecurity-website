@@ -15,9 +15,9 @@ const navItems = [
 ---
 
 <header class="sticky top-0 z-30 w-full">
-    <div class="glass-strong border-b border-primary/15">
+    <div class="backdrop-blur-glass bg-ink/80 border-b border-border">
         <div class="mx-auto w-full max-w-6xl px-6 sm:px-8">
-            <div class="flex items-center justify-between h-16 sm:h-18">
+            <div class="flex items-center justify-between h-16 sm:h-20">
                 <Logo size="sm" />
 
                 <nav class="hidden lg:flex items-center gap-7" aria-label="Primary">
@@ -26,18 +26,18 @@ const navItems = [
                     ))}
                 </nav>
 
-                <div class="hidden md:flex items-center gap-4 text-mono text-xs text-font/70">
+                <div class="hidden lg:flex items-center gap-4 text-mono text-xs text-ink-muted">
                     <a
                         href={`mailto:${contacts.email}`}
-                        class="hover:text-primary transition-colors inline-flex items-center gap-2"
+                        class="hover:text-calm transition-colors inline-flex items-center gap-2"
                     >
                         <i class="fa-regular fa-envelope" aria-hidden="true"></i>
                         <span class="hidden xl:inline">{contacts.email}</span>
                     </a>
-                    <span class="h-4 w-px bg-primary/30" aria-hidden="true"></span>
+                    <span class="h-4 w-px bg-border" aria-hidden="true"></span>
                     <a
                         href={`tel:${contacts.phone}`}
-                        class="hover:text-primary transition-colors inline-flex items-center gap-2"
+                        class="hover:text-calm transition-colors inline-flex items-center gap-2"
                     >
                         <i class="fa-solid fa-phone" aria-hidden="true"></i>
                         <span class="hidden xl:inline">{contacts.phone}</span>
@@ -47,13 +47,13 @@ const navItems = [
                 <button
                     type="button"
                     data-mobile-menu-trigger
-                    class="lg:hidden inline-flex items-center justify-center h-10 w-10 rounded border border-primary/30 text-primary hover:bg-primary/10 transition-colors"
+                    class="lg:hidden inline-flex items-center justify-center h-10 w-10 rounded-md text-ink-text hover:text-calm hover:bg-surface-raised transition-colors"
                     aria-label="Toggle menu"
                     aria-expanded="false"
                     aria-controls="mobile-menu"
                 >
                     <i class="fa-solid fa-bars" data-mobile-menu-icon-open aria-hidden="true"></i>
-                    <i class="fa-solid fa-xmark hidden" data-mobile-menu-icon-close aria-hidden="true"></i>
+                    <i class="fa-solid fa-xmark" data-mobile-menu-icon-close aria-hidden="true"></i>
                 </button>
             </div>
         </div>
@@ -61,19 +61,19 @@ const navItems = [
 </header>
 
 <MobileMenu items={navItems}>
-    <div slot="footer" class="flex flex-col gap-3 text-sm text-font/80">
+    <div slot="footer" class="flex flex-col gap-3 text-sm text-ink-muted">
         <a
             href={`mailto:${contacts.email}`}
-            class="inline-flex items-center gap-3 hover:text-primary transition-colors"
+            class="inline-flex items-center gap-3 hover:text-calm transition-colors"
         >
-            <i class="fa-regular fa-envelope text-primary" aria-hidden="true"></i>
+            <i class="fa-regular fa-envelope text-calm" aria-hidden="true"></i>
             {contacts.email}
         </a>
         <a
             href={`tel:${contacts.phone}`}
-            class="inline-flex items-center gap-3 hover:text-primary transition-colors"
+            class="inline-flex items-center gap-3 hover:text-calm transition-colors"
         >
-            <i class="fa-solid fa-phone text-primary" aria-hidden="true"></i>
+            <i class="fa-solid fa-phone text-calm" aria-hidden="true"></i>
             {contacts.phone}
         </a>
     </div>

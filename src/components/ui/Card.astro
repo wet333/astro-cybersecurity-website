@@ -1,26 +1,33 @@
 ---
 interface Props {
+    tone?: 'subtle' | 'subtle-strong' | 'default' | 'strong';
     hover?: boolean;
-    glow?: boolean;
-    tone?: 'default' | 'strong';
-    as?: string;
+    interactive?: boolean;
+    as?: 'div' | 'section' | 'article' | 'main' | 'aside' | 'header' | 'footer' | 'nav';
     class?: string;
 }
 
 const {
+    tone = 'subtle',
     hover = false,
-    glow = false,
-    tone = 'default',
+    interactive = false,
     as: Tag = 'div',
     class: className = '',
-} = Astro.props;
+}: Props = Astro.props;
+
+const toneClasses: Record<string, string> = {
+    subtle: 'bg-surface border border-border',
+    'subtle-strong': 'bg-surface-raised border border-border',
+    default: 'glass',
+    strong: 'glass-strong',
+};
 
 const baseClasses = [
-    'relative p-6 sm:p-7',
-    'transition-all duration-300',
-    tone === 'strong' ? 'glass-strong' : 'glass',
-    hover ? 'hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-glow' : '',
-    glow ? 'shadow-glow' : '',
+    'relative rounded-card p-6 sm:p-7',
+    'transition-all duration-200 ease-out',
+    toneClasses[tone],
+    hover ? 'hover:border-border-active hover:-translate-y-0.5' : '',
+    interactive ? 'cursor-pointer' : '',
     className,
 ];
 ---

@@ -7,11 +7,13 @@ export function initAccordionClick(): void {
 
     detailsList.forEach((details) => {
         details.addEventListener('click', (e) => {
+            const target = e.target as Element | null;
+            if (!target) return;
             // Let the <summary> handle its own click natively
-            if (e.target.closest('summary')) return;
+            if (target.closest('summary')) return;
             // Don't interfere with interactive descendants
             if (
-                e.target.closest(
+                target.closest(
                     'a, button, input, textarea, select, [role="button"]',
                 )
             )

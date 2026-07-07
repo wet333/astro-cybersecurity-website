@@ -1,0 +1,33 @@
+---
+interface Props {
+    variant?: 'default' | 'compact';
+    class?: string;
+}
+
+const { variant = 'default', class: className = '' } = Astro.props;
+---
+
+<div
+    class:list={[
+        'inline-flex items-center gap-3 sm:gap-4 px-3.5 sm:px-4 py-2 rounded-md bg-surface border border-border text-mono text-[0.7rem] sm:text-xs uppercase tracking-wider text-ink-muted',
+        variant === 'compact' ? 'text-[0.65rem] py-1.5 px-3' : '',
+        className,
+    ]}
+    role="status"
+    aria-label="Live platform status"
+>
+    <span class="inline-flex items-center gap-2 text-alert">
+        <span class="block w-1.5 h-1.5 rounded-full bg-alert animate-pulse-dot" aria-hidden="true"></span>
+        <span class="font-semibold">Live</span>
+    </span>
+    <span class="h-3 w-px bg-border" aria-hidden="true"></span>
+    <span class="text-ink-text">
+        <span class="text-ink-text font-semibold tabular-nums" data-count-up="12847302" data-count-suffix="" data-count-duration="1800">12,847,302</span>
+        <span class="text-ink-muted"> threats blocked · 90d</span>
+    </span>
+    <span class="hidden sm:inline h-3 w-px bg-border" aria-hidden="true"></span>
+    <span class="hidden sm:inline">
+        <span class="text-ink-muted">avg response </span>
+        <span class="text-ink-text font-semibold tabular-nums">4m 12s</span>
+    </span>
+</div>

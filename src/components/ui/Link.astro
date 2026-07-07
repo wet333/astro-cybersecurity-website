@@ -9,9 +9,9 @@ interface Props {
 const { href, variant = 'default', external = false, class: className = '' } = Astro.props;
 
 const variantClasses: Record<string, string> = {
-    default: 'text-font/80 hover:text-primary transition-colors duration-200',
-    nav: 'text-font/85 hover:text-primary transition-colors duration-200 text-mono text-sm uppercase tracking-wider',
-    footer: 'text-font/60 hover:text-primary transition-colors duration-200 text-sm',
+    default: 'text-ink-text/80 hover:text-calm transition-colors duration-200',
+    nav: 'text-ink-text/85 hover:text-calm transition-colors duration-200 text-mono text-sm uppercase tracking-wider',
+    footer: 'text-ink-muted hover:text-calm transition-colors duration-200 text-sm',
 };
 ---
 

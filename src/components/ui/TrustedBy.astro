@@ -1,0 +1,39 @@
+---
+const wordmarks = [
+    'Meridian',
+    'Vertex',
+    'Halcyon',
+    'Northwind',
+    'Stratos',
+];
+---
+
+<div
+    class="trust-strip flex flex-wrap items-baseline gap-x-4 gap-y-1.5 text-sm sm:text-[0.95rem]"
+    aria-label="Selected clients"
+>
+    {wordmarks.map((name) => (
+        <span class="font-display font-semibold tracking-tight text-ink-muted">
+            {name}
+        </span>
+    ))}
+</div>
+
+<style>
+    .trust-strip {
+        -webkit-mask-image: linear-gradient(
+            90deg,
+            transparent 0,
+            #000 8%,
+            #000 92%,
+            transparent 100%
+        );
+        mask-image: linear-gradient(
+            90deg,
+            transparent 0,
+            #000 8%,
+            #000 92%,
+            transparent 100%
+        );
+    }
+</style>
